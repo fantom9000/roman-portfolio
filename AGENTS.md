@@ -12,11 +12,14 @@ This is Roman Zhalyalov's UX/UI portfolio website. Roman is a UX/UI designer bui
   - `/projects/quiz/`
   - `/projects/mary-trufel/`
   - `/projects/peptidy/`
-- Production build has passed with `astro build` after the latest home-page polish.
+- Production build has passed with `astro build` after the latest case-page screenshot polish.
 - Astro diagnostics have passed with `astro check`: 0 errors, 0 warnings, 0 hints.
 - Local dev server was run at `http://127.0.0.1:4321/`.
-- Git is not initialized in this folder yet.
-- Next focus: polish the project pages, starting with `/projects/burosfera/`.
+- Git is initialized in this folder.
+- GitHub remote is connected: `https://github.com/fantom9000/roman-portfolio`.
+- Current branch is `main`; latest saved commit is `Refine case study screenshots`.
+- `/projects/burosfera/` has been expanded against Figma and visually approved as a good direction.
+- Next focus: polish `/projects/quiz/`.
 
 ## Stack
 
@@ -77,6 +80,7 @@ Rollup native module had macOS code-signature issues in this environment. `packa
 - Do not use the old Figma factoid treatment with logo beside a huge number unless Roman explicitly asks to restore it.
 - Do not place descriptive beige text labels over project preview images on the home page.
 - Browser-window chrome above screenshots is decorative and should be CSS, not a downloaded Figma asset.
+- On case pages, the current approved direction removes browser-window chrome from desktop screenshots. Desktop screenshots use 12px rounded corners and a subtle shadow instead of a visible browser bar or border. Phone-background tiles also use 12px corners.
 - Some home-page choices intentionally differ from Figma:
   - no beige/gray label overlays over project preview images;
   - custom left project sidebar remains;
@@ -136,12 +140,14 @@ env ASTRO_TELEMETRY_DISABLED=1 /Users/Roman/.cache/codex-runtimes/codex-primary-
 
 - Continue visual review with Roman in the browser.
 - Main page still needs final visual review, especially exact vertical rhythm and responsive behavior, but current custom direction should be preserved.
-- Start project-page polishing with the Бюросфера page:
-  - read Figma page/context for `Бюросфера`;
-  - compare current `/projects/burosfera/` with Figma;
+- Continue project-page polishing with the Квиз page:
+  - read Figma page/context for `Квиз`;
+  - compare current `/projects/quiz/` with Figma;
   - preserve readable Astro/CSS code;
   - use local assets, not remote Figma URLs;
   - verify with build/check.
+- Later, revisit image quality across the site. Roman may export higher-quality final images from Figma; prefer approved sharp source assets before final optimization.
+- Before final publishing, do a typography pass for non-breaking spaces, hanging prepositions, punctuation, ruble signs, and responsive line breaks.
 - Check responsive layouts at 1440, 1024, 768, and 390 px.
 - Add real Telegram, email, and CV links later.
-- Initialize Git and inspect Roman's existing GitHub Pages setup before publishing.
+- Inspect Roman's existing `fantom9000.github.io` setup before publishing if the desired URL is `https://fantom9000.github.io/` without a repository subfolder.
