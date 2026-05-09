@@ -12,14 +12,15 @@ This is Roman Zhalyalov's UX/UI portfolio website. Roman is a UX/UI designer bui
   - `/projects/quiz/`
   - `/projects/mary-trufel/`
   - `/projects/peptidy/`
-- Production build has passed with `astro build` after the latest case-page screenshot polish.
+- Production build has passed with `astro build` after the latest quiz-page polish.
 - Astro diagnostics have passed with `astro check`: 0 errors, 0 warnings, 0 hints.
 - Local dev server was run at `http://127.0.0.1:4321/`.
 - Git is initialized in this folder.
 - GitHub remote is connected: `https://github.com/fantom9000/roman-portfolio`.
-- Current branch is `main`; latest saved commit is `Refine case study screenshots`.
+- Current branch is `main`; latest saved commit is `Polish quiz case page`.
 - `/projects/burosfera/` has been expanded against Figma and visually approved as a good direction.
-- Next focus: polish `/projects/quiz/`.
+- `/projects/quiz/` now uses the correct Figma-derived SayGames blocks and is visually approved as the current direction.
+- Next focus: polish `/projects/mary-trufel/`.
 
 ## Stack
 
@@ -61,7 +62,7 @@ Rollup native module had macOS code-signature issues in this environment. `packa
   - `Квиз`
   - `Мэри Трюфель`
   - `Пептиды`
-- For Figma work, use `get_design_context`, `get_metadata`, and screenshots from the Figma MCP. Compare with browser screenshots at 1440px wide before making strong visual claims.
+- For Figma work, use `get_design_context` and `get_metadata` when needed, but be economical with context. Roman prefers to provide page screenshots and downloaded assets himself when possible. Ask Roman for screenshots/assets instead of generating screenshots automatically unless a screenshot is essential to resolve ambiguity.
 
 ## Design Rules
 
@@ -80,7 +81,7 @@ Rollup native module had macOS code-signature issues in this environment. `packa
 - Do not use the old Figma factoid treatment with logo beside a huge number unless Roman explicitly asks to restore it.
 - Do not place descriptive beige text labels over project preview images on the home page.
 - Browser-window chrome above screenshots is decorative and should be CSS, not a downloaded Figma asset.
-- On case pages, the current approved direction removes browser-window chrome from desktop screenshots. Desktop screenshots use 12px rounded corners and a subtle shadow instead of a visible browser bar or border. Phone-background tiles also use 12px corners.
+- On case pages, the current approved direction removes browser-window chrome from desktop screenshots. Desktop screenshots use 12px rounded corners and a subtle shadow instead of a visible browser bar or border. Phone-background tiles and mobile screenshot tiles also use 12px corners. Do not change the rounded shape of standalone phone mockups unless Roman asks. The shared tile/screenshot CSS value is `--case-radius: 12px`.
 - Some home-page choices intentionally differ from Figma:
   - no beige/gray label overlays over project preview images;
   - custom left project sidebar remains;
@@ -100,6 +101,8 @@ Rollup native module had macOS code-signature issues in this environment. `packa
   - `public/images/figma/high/welcome`
   - `public/images/figma/high/concepts`
   - `public/images/figma/high/three-d-tiles`
+- Figma-derived assets for the polished Quiz case are under:
+  - `public/images/projects/quiz/figma-sections`
 - Older compressed or experimental Figma assets may still exist under `public/images/figma/optimized` and `public/images/figma/exact`. Check image quality before using them.
 - Future improvement: generate high-quality WebP/AVIF variants from approved PNG/source assets when the dependency environment is stable.
 
@@ -124,10 +127,11 @@ Rollup native module had macOS code-signature issues in this environment. `packa
 - Do not add Tailwind unless Roman explicitly asks.
 - Do not delete existing GitHub Pages files or remote content without inspecting them first.
 - Do not overwrite Roman-approved custom changes just because Figma differs. Ask or preserve the latest agreed direction.
-- For page-polish tasks, compare:
+- For page-polish tasks, compare, while minimizing context use:
   - Figma screenshot/metadata;
   - local browser screenshot at 1440px;
   - actual asset quality in `public/images`.
+- Prefer asking Roman to provide screenshots for visual comparison. Do not generate your own browser/Figma screenshots unless explicitly needed or requested.
 - If an image looks bad, inspect whether it is a low-resolution export, over-compressed WebP, or a broken transparent/black Figma asset before changing layout.
 - Before claiming completion, run:
 
@@ -140,9 +144,9 @@ env ASTRO_TELEMETRY_DISABLED=1 /Users/Roman/.cache/codex-runtimes/codex-primary-
 
 - Continue visual review with Roman in the browser.
 - Main page still needs final visual review, especially exact vertical rhythm and responsive behavior, but current custom direction should be preserved.
-- Continue project-page polishing with the Квиз page:
-  - read Figma page/context for `Квиз`;
-  - compare current `/projects/quiz/` with Figma;
+- Continue project-page polishing with the Mary Trufel page:
+  - read Figma page/context for `Мэри Трюфель` only as much as needed;
+  - compare current `/projects/mary-trufel/` with Roman-provided screenshots or Figma context;
   - preserve readable Astro/CSS code;
   - use local assets, not remote Figma URLs;
   - verify with build/check.
