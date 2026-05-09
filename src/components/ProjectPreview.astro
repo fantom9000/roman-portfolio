@@ -1,0 +1,39 @@
+---
+import type { Project } from "@data/projects";
+
+type Props = {
+  project: Project;
+};
+
+const { project } = Astro.props;
+---
+
+<article class="project-preview" data-project={project.slug}>
+  <a class="project-sidebar" href={project.href} aria-label={`Открыть проект ${project.title}`}>
+    {project.number === "01" && <span class="project-kicker">Задизайнил</span>}
+    <div class="project-sidebar__meta">
+      <span class="project-number">{project.number}</span>
+      <h2>{project.title}</h2>
+      <p>{project.description}</p>
+    </div>
+  </a>
+  <a class="project-visual" href={project.href} aria-label={`Открыть проект ${project.title}`}>
+    {
+      project.previewKind === "quiz" ? (
+        <div class="quiz-preview" aria-hidden="true">
+          <img src="/images/home/quiz-1.png" alt="" width="232" height="502" loading="lazy" />
+          <img src="/images/home/quiz-2.png" alt="" width="232" height="502" loading="lazy" />
+          <img src="/images/home/quiz-3.png" alt="" width="232" height="502" loading="lazy" />
+        </div>
+      ) : project.previewKind === "peptidy" ? (
+        <div class="peptidy-preview">
+          <div class="browser-shell browser-shell--in-card">
+            <img src={project.previewImage} alt={project.description} width="704" height="607" loading="lazy" />
+          </div>
+        </div>
+      ) : (
+        <img src={project.previewImage} alt={project.description} width="1086" height="724" loading={project.number === "01" ? "eager" : "lazy"} />
+      )
+    }
+  </a>
+</article>

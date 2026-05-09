@@ -1,0 +1,26 @@
+---
+type Props = {
+  desktopImage: string;
+  desktopAlt: string;
+  mobileImage: string;
+  mobileAlt: string;
+};
+
+const { desktopImage, desktopAlt, mobileImage, mobileAlt } = Astro.props;
+---
+
+<section class="desktop-mobile-screens">
+  <figure class="desktop-mobile-browser">
+    <div class="desktop-mobile-chrome" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="desktop-mobile-image">
+      <img src={desktopImage} alt={desktopAlt} width="844" height="568" loading="lazy" />
+    </div>
+  </figure>
+  <figure class="desktop-mobile-phone">
+    <img src={mobileImage} alt={mobileAlt} width="222" height="481" loading="lazy" />
+  </figure>
+</section>

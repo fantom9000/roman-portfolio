@@ -1,0 +1,11 @@
+---
+import CasePage from "@components/CasePage.astro";
+import { projects } from "@data/projects";
+
+const project = projects.find((item) => item.slug === "burosfera");
+if (!project) {
+  throw new Error("Project burosfera not found");
+}
+---
+
+<CasePage project={project} />

@@ -1,0 +1,12 @@
+---
+type Props = {
+  text: string;
+  indent?: boolean;
+};
+
+const { text, indent = false } = Astro.props;
+---
+
+<section class:list={["hero-text", { "hero-text--indent": indent }]}>
+  <h1>{text}</h1>
+</section>

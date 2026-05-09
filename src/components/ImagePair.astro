@@ -1,0 +1,18 @@
+---
+type Props = {
+  images: string[];
+  alts: string[];
+};
+
+const { images, alts } = Astro.props;
+---
+
+<section class="case-image-pair">
+  {
+    images.map((image, index) => (
+      <figure class="case-image-tile">
+        <img src={image} alt={alts[index] ?? ""} width="533" height="714" loading="lazy" />
+      </figure>
+    ))
+  }
+</section>

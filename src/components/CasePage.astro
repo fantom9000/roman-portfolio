@@ -1,0 +1,71 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Divider from "@components/Divider.astro";
+import HeroText from "@components/HeroText.astro";
+import TextSection from "@components/TextSection.astro";
+import BrowserFrame from "@components/BrowserFrame.astro";
+import MobileScreens from "@components/MobileScreens.astro";
+import ImagePair from "@components/ImagePair.astro";
+import DesktopMobileScreens from "@components/DesktopMobileScreens.astro";
+import type { Project } from "@data/projects";
+
+type Props = {
+  project: Project;
+};
+
+const { project } = Astro.props;
+---
+
+<BaseLayout title={`${project.title} — Роман Жалялов`} description={project.description}>
+  <main class="page">
+    <Header />
+    <HeroText text={project.hero} />
+    <Divider />
+    {
+      project.sections.map((section) => {
+        if (section.type === "text") {
+          return <TextSection title={section.title} body={section.body} />;
+        }
+        if (section.type === "browser") {
+          return (
+            <>
+              {section.title && section.body && <TextSection title={section.title} body={section.body} />}
+              <BrowserFrame image={section.image} alt={section.alt} height={section.height} />
+            </>
+          );
+        }
+        if (section.type === "mobilePair") {
+          return (
+            <>
+              {section.title && section.body && <TextSection title={section.title} body={section.body} />}
+              <MobileScreens images={section.images} alts={section.alts} />
+            </>
+          );
+        }
+        if (section.type === "imagePair") {
+          return (
+            <>
+              {section.title && section.body && <TextSection title={section.title} body={section.body} />}
+              <ImagePair images={section.images} alts={section.alts} />
+            </>
+          );
+        }
+        return (
+          <>
+            {section.title !== undefined && section.body && <TextSection title={section.title} body={section.body} />}
+            <DesktopMobileScreens
+              desktopImage={section.desktopImage}
+              desktopAlt={section.desktopAlt}
+              mobileImage={section.mobileImage}
+              mobileAlt={section.mobileAlt}
+            />
+          </>
+        );
+      })
+    }
+    <HeroText text={project.lead} />
+    <Footer />
+  </main>
+</BaseLayout>

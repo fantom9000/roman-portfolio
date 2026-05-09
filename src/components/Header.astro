@@ -1,0 +1,15 @@
+---
+import { site } from "@data/site";
+---
+
+<header class="site-header text-20">
+  <a class="brand" href="/" aria-label="На главную">
+    <span>{site.name}</span>
+    <span>{site.title}</span>
+  </a>
+  <nav class="contact-links" aria-label="Контакты">
+    <a href={site.contacts.cv}>CV</a>
+    <a href={site.contacts.telegram}>Телеграм</a>
+    <a href={site.contacts.email}>Почта</a>
+  </nav>
+</header>

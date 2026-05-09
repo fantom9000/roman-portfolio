@@ -1,0 +1,15 @@
+---
+import { site } from "@data/site";
+---
+
+<footer class="site-footer text-20">
+  <div class="footer-name">
+    <span>{site.name}</span>
+    <span>{site.title}</span>
+  </div>
+  <nav class="contact-links" aria-label="Контакты в футере">
+    <a href={site.contacts.cv}>CV</a>
+    <a href={site.contacts.telegram}>Телеграм</a>
+    <a href={site.contacts.email}>Почта</a>
+  </nav>
+</footer>

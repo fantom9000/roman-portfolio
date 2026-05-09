@@ -1,0 +1,98 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Divider from "@components/Divider.astro";
+import HeroText from "@components/HeroText.astro";
+import ProjectPreview from "@components/ProjectPreview.astro";
+import { projects, sideWork } from "@data/projects";
+---
+
+<BaseLayout>
+  <main class="page">
+    <Header />
+    <HeroText
+      indent
+      text="В дизайне с 2023 года, работал в Бюро Горбунова. Проектировал интерфейсы для Peptid.ru, SayGames, Mary Trufel и «Welcome Доставка», использую 3D и AI-инструменты."
+    />
+    <Divider />
+    <section class="projects-list" aria-label="Проекты">
+      {projects.slice(0, 2).map((project) => <ProjectPreview project={project} />)}
+      <HeroText
+        indent
+        text="Адепт подходов бюро: ФФФ, инфостиль Ильяхова и интерфейсные принципы Бирмана. Люблю дизайн-системы, глубоко погружаюсь в задачи и ищу системные решения."
+      />
+      {projects.slice(2).map((project) => <ProjectPreview project={project} />)}
+    </section>
+    <section class="welcome-work" aria-label="Welcome доставка">
+      <div class="welcome-work__phones" aria-label="Экраны приложения Welcome доставка">
+        {
+          [
+            ["welcome-1.png", "Главный экран Welcome доставки"],
+            ["welcome-2.png", "Экран каталога Welcome доставки"],
+            ["welcome-3.png", "Экран карточки блюда Welcome доставки"],
+            ["welcome-4.png", "Экран оформления заказа Welcome доставки"],
+            ["welcome-5.png", "Экран профиля Welcome доставки"]
+          ].map(([image, alt]) => (
+            <figure class="welcome-phone">
+              <img class="welcome-phone__frame" src="/images/figma/high/welcome/welcome-frame.png" alt="" loading="lazy" />
+              <img class="welcome-phone__screen" src={`/images/figma/high/welcome/${image}`} alt={alt} loading="lazy" />
+            </figure>
+          ))
+        }
+      </div>
+      <div class="welcome-work__text">
+        <h2>Welcome доставка</h2>
+        <p>
+          Полный редизайн мобильного приложения сервиса доставки еды. Добавлены тематические модули
+          с подборками и акциями, переработаны фильтры, обновлены карточки ресторанов.
+        </p>
+        <p>
+          Собрана новая структура страницы: добавлены перебивки с фактами и предложениями,
+          разработан дизайн тематических подборок и система навигации по категориям.
+        </p>
+      </div>
+    </section>
+    <Divider />
+    <section class="side-work">
+      <aside class="side-work__text">
+        <h2>{sideWork.concepts.title}</h2>
+        <p>{sideWork.concepts.description}</p>
+      </aside>
+      <div class="side-work__visual" aria-label="Концепты">
+        <img src="/images/figma/high/concepts/concepts.png" alt="Коллаж интерфейсных концептов" loading="lazy" width="1086" height="666" />
+      </div>
+    </section>
+    <Divider />
+    <section class="side-work side-work--tall">
+      <aside class="side-work__text">
+        <h2>{sideWork.threeD.title}</h2>
+        <p>{sideWork.threeD.description}</p>
+      </aside>
+      <div class="three-d-grid" aria-label="3D работы">
+        <figure class="three-d-tile three-d-tile--wide">
+          <img src="/images/figma/high/three-d-tiles/santa.png" alt="Иллюстрация для концепции приложения-компаньона Санта Клауса" loading="lazy" />
+        </figure>
+        <figure class="three-d-tile">
+          <img src="/images/figma/high/three-d-tiles/heart.png" alt="3D-график просмотров" loading="lazy" />
+        </figure>
+        <figure class="three-d-tile">
+          <img src="/images/figma/high/three-d-tiles/paper.png" alt="3D-иллюстрация бумажной формы" loading="lazy" />
+        </figure>
+        <figure class="three-d-tile three-d-tile--wide">
+          <img src="/images/figma/high/three-d-tiles/bereal.png" alt="Шот для концепции редизайна приложения BeReal" loading="lazy" />
+        </figure>
+        <figure class="three-d-tile three-d-tile--wide three-d-tile--car">
+          <img src="/images/figma/high/three-d-tiles/f1-car.png" alt="3D-концепт гоночного автомобиля" loading="lazy" />
+        </figure>
+        <figure class="three-d-tile">
+          <img src="/images/figma/high/three-d-tiles/sber.png" alt="3D-концепт для интерфейса" loading="lazy" />
+        </figure>
+        <figure class="three-d-tile">
+          <img src="/images/figma/high/three-d-tiles/icecream.png" alt="3D-иллюстрация мороженого" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+    <Footer />
+  </main>
+</BaseLayout>

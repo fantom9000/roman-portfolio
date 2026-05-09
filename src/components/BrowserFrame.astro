@@ -1,0 +1,20 @@
+---
+type Props = {
+  image: string;
+  alt: string;
+  height?: number;
+};
+
+const { image, alt, height = 900 } = Astro.props;
+---
+
+<figure class="browser-frame" style={`--frame-height: ${height}px`}>
+  <div class="browser-chrome" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="browser-image">
+    <img src={image} alt={alt} width="1086" loading="lazy" />
+  </div>
+</figure>
