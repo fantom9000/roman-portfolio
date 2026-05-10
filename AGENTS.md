@@ -17,10 +17,11 @@ This is Roman Zhalyalov's UX/UI portfolio website. Roman is a UX/UI designer bui
 - Local dev server was run at `http://127.0.0.1:4321/`.
 - Git is initialized in this folder.
 - GitHub remote is connected: `https://github.com/fantom9000/roman-portfolio`.
-- Current branch is `main`; latest saved commit is `Polish quiz case page`.
+- Current branch is `main`; latest saved commit is `Polish Mary Trufel case page`.
 - `/projects/burosfera/` has been expanded against Figma and visually approved as a good direction.
 - `/projects/quiz/` now uses the correct Figma-derived SayGames blocks and is visually approved as the current direction.
-- Next focus: polish `/projects/mary-trufel/`.
+- `/projects/mary-trufel/` now uses the correct Figma-derived Mary Trufel blocks and is visually approved as the current direction.
+- Next focus: polish `/projects/peptidy/`, unless Roman asks for another Mary Trufel pass.
 
 ## Stack
 
@@ -104,6 +105,9 @@ Rollup native module had macOS code-signature issues in this environment. `packa
 - Figma-derived assets for the polished Quiz case are under:
   - `public/images/projects/quiz/figma-sections`
 - Quiz is approved for now. Its first and third visual rows are intentionally rendered as separate `imagePair` tiles, not single flattened wide images, so each gray tile receives the shared 12px radius from CSS.
+- Figma-derived assets for the polished Mary Trufel case are under:
+  - `public/images/projects/mary-trufel/figma-sections`
+- Mary Trufel is approved for now. Its final two-phone row should stay a standard `imagePair` using two ready-made 533×714 Figma tile exports, not a hand-built phone mockup from separate screen/frame layers.
 - Older compressed or experimental Figma assets may still exist under `public/images/figma/optimized` and `public/images/figma/exact`. Check image quality before using them.
 - Future improvement: generate high-quality WebP/AVIF variants from approved PNG/source assets when the dependency environment is stable.
 
@@ -145,9 +149,9 @@ env ASTRO_TELEMETRY_DISABLED=1 /Users/Roman/.cache/codex-runtimes/codex-primary-
 
 - Continue visual review with Roman in the browser.
 - Main page still needs final visual review, especially exact vertical rhythm and responsive behavior, but current custom direction should be preserved.
-- Continue project-page polishing with the Mary Trufel page:
-  - read Figma page/context for `Мэри Трюфель` only as much as needed;
-  - compare current `/projects/mary-trufel/` with Roman-provided screenshots or Figma context;
+- Continue project-page polishing with the Peptid.ru page unless Roman redirects:
+  - read Figma page/context for `Пептиды` only as much as needed;
+  - compare current `/projects/peptidy/` with Roman-provided screenshots or Figma context;
   - preserve readable Astro/CSS code;
   - use local assets, not remote Figma URLs;
   - verify with build/check.

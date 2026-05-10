@@ -41,6 +41,8 @@ export type CaseSection =
       desktopAlt: string;
       mobileImage: string;
       mobileAlt: string;
+      desktopHeight?: number;
+      mobileHeight?: number;
     };
 
 export type Project = {
@@ -239,7 +241,7 @@ export const projects: Project[] = [
       },
       {
         type: "browser",
-        image: "/images/optimized/projects/mary-trufel/main-screen.jpg",
+        image: "/images/projects/mary-trufel/figma-sections/context-empty.png",
         alt: "Страница избранного Mary Trufel",
         height: 1362
       },
@@ -247,7 +249,54 @@ export const projects: Project[] = [
         type: "text",
         title: "Задача",
         body:
-          "Сделать избранное удобным для сравнения платьев и продолжения подбора без возврата в каталог."
+          "Сделать избранное удобным для сравнения платьев и продолжения подбора без возврата в каталог, чтобы невеста могла пересматривать варианты и определиться с выбором."
+      },
+      {
+        type: "desktopMobile",
+        desktopImage: "/images/projects/mary-trufel/figma-sections/task-desktop.png",
+        desktopAlt: "Страница избранного Mary Trufel с сохраненными платьями",
+        mobileImage: "/images/projects/mary-trufel/figma-sections/task-mobile.png",
+        mobileAlt: "Мобильная страница избранного Mary Trufel",
+        desktopHeight: 964,
+        mobileHeight: 481
+      },
+      {
+        type: "text",
+        title: "",
+        body:
+          "Если не хватает вариантов, можно получить подборку на основе сохранённых платьев и продолжить поиск."
+      },
+      {
+        type: "browser",
+        image: "/images/projects/mary-trufel/figma-sections/recommendation-desktop.png",
+        alt: "Экран Mary Trufel с персональной подборкой платьев",
+        height: 1287
+      },
+      {
+        type: "text",
+        title: "",
+        body:
+          "Внутри избранного появляются небольшие вставки, которые напоминают о примерке и приглашают зарегистрироваться, чтобы получить подборку от Феи."
+      },
+      {
+        type: "desktopMobile",
+        desktopImage: "/images/projects/mary-trufel/figma-sections/fairy-desktop.png",
+        desktopAlt: "Страница избранного Mary Trufel со вставкой подбора от Феи",
+        mobileImage: "/images/projects/mary-trufel/figma-sections/fairy-mobile.png",
+        mobileAlt: "Мобильная страница избранного Mary Trufel со вставкой подбора от Феи",
+        desktopHeight: 954,
+        mobileHeight: 481
+      },
+      {
+        type: "imagePair",
+        images: [
+          "/images/projects/mary-trufel/figma-sections/mobile-tile-1.png",
+          "/images/projects/mary-trufel/figma-sections/mobile-tile-2.png"
+        ],
+        alts: [
+          "Мобильный экран персональной подборки Mary Trufel",
+          "Мобильный экран избранного Mary Trufel"
+        ]
       }
     ]
   },
