@@ -323,7 +323,7 @@ export const projects: Project[] = [
       },
       {
         type: "browser",
-        image: "/images/optimized/projects/peptidy/main-screen.jpg",
+        image: "/images/projects/peptidy/main-screen.png",
         alt: "Лендинг программы лояльности Peptid.ru",
         height: 2532
       },
@@ -332,6 +332,28 @@ export const projects: Project[] = [
         title: "Задача",
         body:
           "Показать условия и преимущества программы и встроить регистрацию в структуру страницы, чтобы к ней можно было перейти по ходу просмотра."
+      },
+      {
+        type: "imagePair",
+        images: [
+          "/images/projects/peptidy/figma-sections/task-mobile-1.png",
+          "/images/projects/peptidy/figma-sections/task-mobile-2.png"
+        ],
+        alts: [
+          "Мобильный экран лендинга Peptid.ru с началом программы лояльности",
+          "Мобильный экран лендинга Peptid.ru с преимуществами программы"
+        ]
+      },
+      {
+        type: "text",
+        title: "",
+        body:
+          "Финальные шаги регистрации идут последовательно и не перегружают пользователя, поэтому процесс легко довести до конца."
+      },
+      {
+        type: "wideImage",
+        image: "/images/projects/peptidy/figma-sections/registration-flow.png",
+        alt: "Мобильные экраны финальных шагов регистрации Peptid.ru"
       }
     ]
   }

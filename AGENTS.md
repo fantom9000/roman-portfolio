@@ -12,16 +12,17 @@ This is Roman Zhalyalov's UX/UI portfolio website. Roman is a UX/UI designer bui
   - `/projects/quiz/`
   - `/projects/mary-trufel/`
   - `/projects/peptidy/`
-- Production build has passed with `astro build` after the latest quiz-page polish.
+- Production build has passed with `astro build` after the latest Peptid.ru page polish.
 - Astro diagnostics have passed with `astro check`: 0 errors, 0 warnings, 0 hints.
 - Local dev server was run at `http://127.0.0.1:4321/`.
 - Git is initialized in this folder.
 - GitHub remote is connected: `https://github.com/fantom9000/roman-portfolio`.
-- Current branch is `main`; latest saved commit is `Polish Mary Trufel case page`.
+- Current branch is `main`; latest saved commit is `Polish Peptid.ru case page`.
 - `/projects/burosfera/` has been expanded against Figma and visually approved as a good direction.
 - `/projects/quiz/` now uses the correct Figma-derived SayGames blocks and is visually approved as the current direction.
 - `/projects/mary-trufel/` now uses the correct Figma-derived Mary Trufel blocks and is visually approved as the current direction.
-- Next focus: polish `/projects/peptidy/`, unless Roman asks for another Mary Trufel pass.
+- `/projects/peptidy/` now includes the Figma-derived desktop screen, two mobile task tiles, and final registration-flow tile. Desktop at 1440 has no current issues from Roman; image quality and responsive polish are intentionally deferred to a later site-wide pass.
+- Next focus: likely a site-wide responsive/image-quality/typography pass, unless Roman redirects.
 
 ## Stack
 
@@ -108,6 +109,9 @@ Rollup native module had macOS code-signature issues in this environment. `packa
 - Figma-derived assets for the polished Mary Trufel case are under:
   - `public/images/projects/mary-trufel/figma-sections`
 - Mary Trufel is approved for now. Its final two-phone row should stay a standard `imagePair` using two ready-made 533×714 Figma tile exports, not a hand-built phone mockup from separate screen/frame layers.
+- Figma-derived assets for the Peptid.ru case are under:
+  - `public/images/projects/peptidy/figma-sections`
+- Peptid.ru desktop at 1440 is structurally approved for now. Its image quality still needs a later source/optimization pass, and responsive issues should be handled with the other pages in a shared responsive pass.
 - Older compressed or experimental Figma assets may still exist under `public/images/figma/optimized` and `public/images/figma/exact`. Check image quality before using them.
 - Future improvement: generate high-quality WebP/AVIF variants from approved PNG/source assets when the dependency environment is stable.
 
@@ -149,12 +153,7 @@ env ASTRO_TELEMETRY_DISABLED=1 /Users/Roman/.cache/codex-runtimes/codex-primary-
 
 - Continue visual review with Roman in the browser.
 - Main page still needs final visual review, especially exact vertical rhythm and responsive behavior, but current custom direction should be preserved.
-- Continue project-page polishing with the Peptid.ru page unless Roman redirects:
-  - read Figma page/context for `Пептиды` only as much as needed;
-  - compare current `/projects/peptidy/` with Roman-provided screenshots or Figma context;
-  - preserve readable Astro/CSS code;
-  - use local assets, not remote Figma URLs;
-  - verify with build/check.
+- Peptid.ru page polish is structurally complete for desktop at 1440. Do not reopen its structure unless Roman asks.
 - Later, revisit image quality across the site. Roman may export higher-quality final images from Figma; prefer approved sharp source assets before final optimization.
 - Before final publishing, do a typography pass for non-breaking spaces, hanging prepositions, punctuation, ruble signs, and responsive line breaks.
 - Check responsive layouts at 1440, 1024, 768, and 390 px.
