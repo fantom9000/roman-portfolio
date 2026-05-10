@@ -178,12 +178,15 @@ export const projects: Project[] = [
       "Квиз работает как простой сценарий привлечения: пользователь проходит короткий путь от первого экрана до установки, не теряя интереса по ходу прохождения.",
     sections: [
       {
-        type: "wideImage",
+        type: "imagePair",
         title: "Контекст",
         body:
           "Квиз использовался как рекламный сценарий: пользователь проходит серию вопросов, получает результат и переходит к подборке игр. Основная задача — удержать внимание и довести пользователя до установки.",
-        image: "/images/projects/quiz/figma-sections/context-start.png",
-        alt: "Два стартовых экрана квиза SayGames"
+        images: [
+          "/images/projects/quiz/figma-sections/context-start-dark.png",
+          "/images/projects/quiz/figma-sections/context-start-light.png"
+        ],
+        alts: ["Тёмный стартовый экран квиза SayGames", "Светлый стартовый экран квиза SayGames"]
       },
       {
         type: "wideImage",
@@ -194,12 +197,15 @@ export const projects: Project[] = [
         alt: "Экраны выбора пола, вопроса да или нет и выбора игры в квизе SayGames"
       },
       {
-        type: "wideImage",
+        type: "imagePair",
         title: "Решение",
         body:
           "Собрал линейный сценарий с короткими вопросами и быстрым выбором, чтобы пользователь не терялся и не выпадал из прохождения. Визуальный стиль и темп экранов поддерживают интерес на протяжении всего квиза.",
-        image: "/images/projects/quiz/figma-sections/solution-choices.png",
-        alt: "Экраны выбора характеристик и оценки игры в квизе SayGames"
+        images: [
+          "/images/projects/quiz/figma-sections/solution-character.png",
+          "/images/projects/quiz/figma-sections/solution-game.png"
+        ],
+        alts: ["Экран выбора характеристик в квизе SayGames", "Экран оценки игры в квизе SayGames"]
       },
       {
         type: "wideImage",

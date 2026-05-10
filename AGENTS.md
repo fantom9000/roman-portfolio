@@ -103,6 +103,7 @@ Rollup native module had macOS code-signature issues in this environment. `packa
   - `public/images/figma/high/three-d-tiles`
 - Figma-derived assets for the polished Quiz case are under:
   - `public/images/projects/quiz/figma-sections`
+- Quiz is approved for now. Its first and third visual rows are intentionally rendered as separate `imagePair` tiles, not single flattened wide images, so each gray tile receives the shared 12px radius from CSS.
 - Older compressed or experimental Figma assets may still exist under `public/images/figma/optimized` and `public/images/figma/exact`. Check image quality before using them.
 - Future improvement: generate high-quality WebP/AVIF variants from approved PNG/source assets when the dependency environment is stable.
 
