@@ -22,7 +22,7 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
 - Git is initialized in this folder.
 - GitHub remote is connected: `https://github.com/fantom9000/roman-portfolio`.
 - Current branch is `main`; latest saved commit is `Polish Peptid.ru case page`.
-- Latest commit: `Fluid typography, concepts bento grid, WebP images, welcome phones`
+- Latest commit: `Responsive pass + 3D tiles WebP conversion`
 - Welcome section uses 5 single-image phone PNGs (1093×2223 after alpha trim), simple grid, gap 10px, max-width 1385px. Mobile: horizontal scroll at 760px.
 - Concepts section rebuilt as 7-tile flex bento grid matching Figma structure (see Figma node 351-26598). All tiles exported as PNG 2x by Roman, converted to lossless WebP.
 - Project preview images (burosfera, quiz, mary-trufel, peptidy) converted to lossless WebP in `public/images/figma/high/previews/`.
@@ -33,8 +33,14 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
 
 ## Remaining Work (home page)
 
-- **Images still to replace:** 3D tiles (7 files in `public/images/figma/high/three-d-tiles/`) — Roman needs to export from Figma as PNG 2x. Workflow: export PNG 2x → drop in folder → agent trims alpha + converts to WebP.
-- **Responsive pass:** Full check at 1440, 1024, 768, 390px for the home page. The current adaptive works at 1440 and 760px breakpoints but mid-range (1024–1100px) needs verification especially for the concepts grid and project preview sections. Reference for responsive behavior: https://www.erno.works/ — font sizes and layout scale proportionally as viewport narrows, no abrupt jumps. Left and right columns must never overlap at any width.
+- **3D tiles:** Converted from PNG to lossless WebP via Pillow (alpha trim + lossless). PNGs still exist in `public/images/figma/high/three-d-tiles/` and can be deleted after visual approval. Index.astro updated to reference `.webp`.
+- **Responsive pass complete** (session 2026-05-12):
+  - Fluid typography: `--text-59` now viewport-proportional (`clamp(31px, 4.22vw - 1.69px, 59px)`) so the lead text holds 4 lines at all desktop widths. `--text-42` and `project-number` clamp updated to 768px base.
+  - `--text-left` variable added (`clamp(15px, …, 20px)`): used for left-column body text (project titles, descriptions, side-work descriptions) to prevent overflow into right column at narrow widths.
+  - Header/Footer restructured: `.brand`/`.footer-name` replaced with flat `.site-name` + `.site-role` elements. `.site-header` and `.site-footer` changed to `display: grid; grid-template-columns: var(--sidebar) 1fr auto` — "Дизайнер интерфейсов" now always sits exactly on the силовая линия at all desktop widths.
+  - Mobile breakpoint changed from 760px to 768px throughout.
+  - `three-d-tile img`: `height: 100%` → `height: auto`.
+  - At ≤768px: `three-d-grid` → single column; `concepts-grid` → flex column with per-section `aspect-ratio`.
 - **PNG source files** for concept tiles still exist alongside WebP — can be deleted once Roman approves quality.
 
 - `/projects/burosfera/` has been expanded against Figma and visually approved.
@@ -83,6 +89,31 @@ Rollup native module had macOS code-signature issues in this environment. `packa
   - `Мэри Трюфель`
   - `Пептиды`
 - For Figma work, use `get_design_context` and `get_metadata` when needed, but be economical with context. Roman prefers to provide page screenshots and downloaded assets himself when possible. Ask Roman for screenshots/assets instead of generating screenshots automatically unless a screenshot is essential to resolve ambiguity.
+
+## Layout System — Силовые линии
+
+This principle applies to ALL pages of the site. Never break it.
+
+The layout is built on two vertical power lines (силовые линии):
+- **Left line**: 20px from the left edge of the page. Everything in the left column starts here: "Роман Жалялов", project numbers, side-work headings.
+- **Right line**: `--sidebar = 22.428571%` from the container. Everything in the right column starts here: "Дизайнер интерфейсов" in the header, the paragraph indent on the lead text, project visuals, concept/3D grids. This is a proportional value — it shifts left as the viewport narrows, and all content follows it.
+
+**Scaling rules (desktop, 768px–1440px+):**
+- The layout stays two-column at all desktop widths. Right column content scales proportionally.
+- Left column font sizes scale DOWN as the viewport narrows (see `--text-left` variable). This is mandatory to prevent left column text from overflowing into the right column — long Russian words will break the layout otherwise.
+- The lead text (лид, hero h1) should always occupy exactly 4 lines. Font size must scale proportionally with the available text-area width so line count stays constant.
+- Right-column large headings (`--text-42`, `--text-59`) scale via `clamp()`.
+- The sidebar percentage stays constant at all desktop widths. No fixed-pixel sidebar at any desktop breakpoint.
+- There must always be visual air between left column text and the right column. `padding-right: 20px` on `.project-sidebar` and `.side-work__text` is the minimum gap.
+
+**Breakpoints:**
+- ≤768px → single-column mobile layout (the only mobile breakpoint).
+- >768px → two-column desktop layout with proportional scaling.
+- No breakpoints between 768px and 1440px. Everything scales fluidly via `clamp()` and percentages.
+
+**Reference site**: https://www.erno.works/ — same editorial grid logic. Font sizes and layout scale proportionally as viewport narrows. No abrupt jumps.
+
+**Quality standard**: This is Roman's professional portfolio. It must display perfectly at all widths, all devices, and all browsers. Visual quality is non-negotiable.
 
 ## Design Rules
 
@@ -143,6 +174,12 @@ Rollup native module had macOS code-signature issues in this environment. `packa
 - Home page layout is in `src/pages/index.astro`.
 - Project preview markup is in `src/components/ProjectPreview.astro`.
 - Case pages currently share data from `src/data/projects.ts`; when polishing project pages, first check whether the needed content/assets already exist there.
+
+## Session Start Rule
+
+When Roman brings tasks at the start of a session, **ask which task to start with** before doing anything. Do not auto-execute all tasks in sequence. Some tasks (like image replacement) have a prerequisite step on Roman's side (exporting from Figma, dropping files). Starting without confirmation means processing the wrong assets or making changes without a visual basis.
+
+Specific mistake to never repeat: Roman described a workflow "Roman exports PNG → drops files → agent processes". There were already old PNG files in the target folder from a previous session. Instead of waiting for confirmation that fresh files had been dropped, the agent silently processed the old files. Always ask "have you dropped the new files?" before processing assets.
 
 ## Editing Guidance
 

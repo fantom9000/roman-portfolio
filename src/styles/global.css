@@ -10,8 +10,9 @@
   --gap: 20px;
   --pad: 20px;
   --text-20: 20px;
-  --text-42: clamp(30px, calc(30px + 12 * (100vw - 760px) / 680), 42px);
-  --text-59: clamp(34px, calc(34px + 25 * (100vw - 760px) / 680), 59px);
+  --text-left: clamp(15px, calc(15px + 5 * (100vw - 768px) / 672), 20px);
+  --text-42: clamp(28px, calc(28px + 14 * (100vw - 768px) / 672), 42px);
+  --text-59: clamp(31px, calc(4.22vw - 1.69px), 59px);
   --font-display: "Inter Display", Inter, Arial, sans-serif;
   --font-text: "Inter Display", Inter, Arial, sans-serif;
   --case-radius: 12px;
@@ -78,12 +79,12 @@ h3 {
 
 .site-header,
 .site-footer {
-  display: flex;
+  display: grid;
+  grid-template-columns: var(--sidebar) 1fr auto;
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   align-items: center;
-  justify-content: space-between;
   padding: 15px var(--pad);
   font-family: var(--font-text);
   white-space: nowrap;
@@ -94,12 +95,9 @@ h3 {
   padding-bottom: 40px;
 }
 
-.brand,
-.footer-name {
-  display: grid;
-  grid-template-columns: 146px 216px;
-  column-gap: 168px;
-  align-items: center;
+.site-name,
+.site-role {
+  display: block;
 }
 
 .contact-links {
@@ -185,7 +183,7 @@ h3 {
   display: block;
   margin-bottom: 18px;
   font-family: var(--font-text);
-  font-size: clamp(48px, calc(48px + 32 * (100vw - 760px) / 680), 80px);
+  font-size: clamp(48px, calc(48px + 32 * (100vw - 768px) / 672), 80px);
   line-height: 0.95;
   letter-spacing: 0;
 }
@@ -194,7 +192,7 @@ h3 {
   max-width: 294px;
   margin-bottom: 4px;
   font-family: var(--font-text);
-  font-size: var(--text-20);
+  font-size: var(--text-left);
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 0;
@@ -205,7 +203,7 @@ h3 {
 .side-work__text p {
   max-width: 294px;
   font-family: var(--font-text);
-  font-size: var(--text-20);
+  font-size: var(--text-left);
   line-height: 1.2;
 }
 
@@ -603,9 +601,9 @@ h3 {
 
 .three-d-tile img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: block;
   max-width: none;
-  object-fit: cover;
 }
 
 @media (max-width: 1100px) {
@@ -614,11 +612,6 @@ h3 {
     --gap: 16px;
   }
 
-  .brand,
-  .footer-name {
-    grid-template-columns: auto;
-    row-gap: 6px;
-  }
 
   .project-preview,
   .side-work {
@@ -659,19 +652,32 @@ h3 {
   .welcome-work__phones {
     gap: 8px;
   }
+
+  .three-d-grid {
+    gap: 16px;
+  }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .site-header,
   .site-footer {
-    align-items: flex-start;
+    grid-template-columns: 1fr auto;
+    align-items: start;
     white-space: normal;
   }
 
+  .site-role {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
   .contact-links {
+    grid-column: 2;
+    grid-row: 1 / 3;
     flex-direction: column;
     align-items: flex-end;
     gap: 8px;
+    align-self: start;
   }
 
   .hero-text {
@@ -776,5 +782,44 @@ h3 {
 
   .welcome-work__text {
     margin-left: 0;
+  }
+
+  .three-d-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .three-d-tile--wide {
+    grid-column: auto;
+  }
+
+  .concepts-grid {
+    aspect-ratio: auto;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .concepts-left,
+  .concepts-right {
+    flex: none;
+    width: 100%;
+  }
+
+  .concepts-top {
+    aspect-ratio: 704 / 410;
+    flex-shrink: 0;
+  }
+
+  .concepts-right {
+    gap: 8px;
+  }
+
+  .concept-tripadvisor {
+    aspect-ratio: 362 / 256;
+    flex-shrink: 0;
+  }
+
+  .concept-city {
+    aspect-ratio: 362 / 256;
   }
 }
