@@ -34,7 +34,7 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
 ## Remaining Work (home page)
 
 - **Images still to replace:** 3D tiles (7 files in `public/images/figma/high/three-d-tiles/`) — Roman needs to export from Figma as PNG 2x. Workflow: export PNG 2x → drop in folder → agent trims alpha + converts to WebP.
-- **Responsive pass:** Full check at 1440, 1024, 768, 390px for the home page. The current adaptive works at 1440 and 760px breakpoints but mid-range (1024–1100px) needs verification especially for the concepts grid and project preview sections.
+- **Responsive pass:** Full check at 1440, 1024, 768, 390px for the home page. The current adaptive works at 1440 and 760px breakpoints but mid-range (1024–1100px) needs verification especially for the concepts grid and project preview sections. Reference for responsive behavior: https://www.erno.works/ — font sizes and layout scale proportionally as viewport narrows, no abrupt jumps. Left and right columns must never overlap at any width.
 - **PNG source files** for concept tiles still exist alongside WebP — can be deleted once Roman approves quality.
 
 - `/projects/burosfera/` has been expanded against Figma and visually approved.
