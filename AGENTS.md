@@ -22,14 +22,25 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
 - Git is initialized in this folder.
 - GitHub remote is connected: `https://github.com/fantom9000/roman-portfolio`.
 - Current branch is `main`; latest saved commit is `Polish Peptid.ru case page`.
-- Welcome section now uses single-image phone PNGs (frame + status bar + screen merged in Figma). No more two-layer frame/screen overlay in code. `welcome-frame.png` deleted.
-- Welcome phones section has horizontal scroll on mobile (<760px) via `overflow-x: auto` with `minmax(140px, 1fr)` columns.
-- Unused image folders deleted: `figma/optimized/`, `figma/exact/`, top-level `optimized/`. Stale `images/home/` originals and unused quiz screens also removed.
-- `/projects/burosfera/` has been expanded against Figma and visually approved as a good direction.
-- `/projects/quiz/` now uses the correct Figma-derived SayGames blocks and is visually approved as the current direction.
-- `/projects/mary-trufel/` now uses the correct Figma-derived Mary Trufel blocks and is visually approved as the current direction.
-- `/projects/peptidy/` now includes the Figma-derived desktop screen, two mobile task tiles, and final registration-flow tile. Desktop at 1440 has no current issues from Roman; image quality and responsive polish are intentionally deferred to a later site-wide pass.
-- Next focus: likely a site-wide responsive/image-quality/typography pass, unless Roman redirects.
+- Latest commit: `Fluid typography, concepts bento grid, WebP images, welcome phones`
+- Welcome section uses 5 single-image phone PNGs (1093×2223 after alpha trim), simple grid, gap 10px, max-width 1385px. Mobile: horizontal scroll at 760px.
+- Concepts section rebuilt as 7-tile flex bento grid matching Figma structure (see Figma node 351-26598). All tiles exported as PNG 2x by Roman, converted to lossless WebP.
+- Project preview images (burosfera, quiz, mary-trufel, peptidy) converted to lossless WebP in `public/images/figma/high/previews/`.
+- **Fluid typography** implemented via `clamp()`: `--text-42`, `--text-59`, and `.project-number` all scale continuously between 760px and 1440px. No fixed breakpoint jumps for font sizes.
+- `text-indent` on hero text fixed: uses `var(--sidebar)` percentage (was hardcoded 310px). Resets to 0 only at 760px, not at 1100px.
+- Unused image folders deleted: `figma/optimized/`, `figma/exact/`, top-level `optimized/`, stale home/ originals.
+- `.claude/` and `CLAUDE.md` added to `.gitignore` to prevent Claude internal files from polluting git.
+
+## Remaining Work (home page)
+
+- **Images still to replace:** 3D tiles (7 files in `public/images/figma/high/three-d-tiles/`) — Roman needs to export from Figma as PNG 2x. Workflow: export PNG 2x → drop in folder → agent trims alpha + converts to WebP.
+- **Responsive pass:** Full check at 1440, 1024, 768, 390px for the home page. The current adaptive works at 1440 and 760px breakpoints but mid-range (1024–1100px) needs verification especially for the concepts grid and project preview sections.
+- **PNG source files** for concept tiles still exist alongside WebP — can be deleted once Roman approves quality.
+
+- `/projects/burosfera/` has been expanded against Figma and visually approved.
+- `/projects/quiz/` uses correct Figma-derived SayGames blocks, visually approved.
+- `/projects/mary-trufel/` uses correct Figma-derived blocks, visually approved.
+- `/projects/peptidy/` structurally complete for desktop at 1440. Responsive and image quality deferred.
 
 ## Stack
 
