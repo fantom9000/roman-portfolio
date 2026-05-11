@@ -290,49 +290,23 @@ h3 {
 .welcome-work__phones {
   display: grid;
   width: min(1376px, 100%);
-  height: 531px;
   margin: 0 auto;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 37px;
   align-items: end;
 }
 
-.welcome-work__phones figure {
-  display: grid;
-  width: 100%;
-  height: 100%;
+.welcome-phone {
   margin: 0;
   padding: 0;
-  place-items: center;
-  overflow: visible;
-  border-radius: 19px;
-  background: #fe0000;
+  display: flex;
+  align-items: flex-end;
 }
 
-.welcome-phone {
-  position: relative;
-}
-
-.welcome-phone__frame {
-  position: absolute;
-  z-index: 1;
-  top: -3.52%;
-  left: -7.63%;
-  width: 115.27%;
-  height: 107.04%;
-  max-width: none;
-  object-fit: fill;
-  pointer-events: none;
-}
-
-.welcome-phone__screen {
-  position: absolute;
-  z-index: 2;
-  inset: 0;
+.welcome-phone img {
   width: 100%;
-  height: 100%;
-  border-radius: 34px;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 .welcome-work__text {
@@ -628,8 +602,6 @@ h3 {
   }
 
   .welcome-work__phones {
-    height: auto;
-    aspect-ratio: 1376 / 531;
     gap: clamp(19px, 2.69vw, 37px);
   }
 }
@@ -739,6 +711,14 @@ h3 {
   .mobile-screen {
     width: 100%;
     height: 560px;
+  }
+
+  .welcome-work__phones {
+    grid-template-columns: repeat(5, minmax(140px, 1fr));
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding-bottom: 8px;
   }
 
   .welcome-work__text {
