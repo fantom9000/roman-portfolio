@@ -58,8 +58,24 @@ import { projects, sideWork } from "@data/projects";
         <h2>{sideWork.concepts.title}</h2>
         <p>{sideWork.concepts.description}</p>
       </aside>
-      <div class="side-work__visual" aria-label="Концепты">
-        <img src="/images/figma/high/concepts/concepts.png" alt="Коллаж интерфейсных концептов" loading="lazy" width="1086" height="666" />
+      <div class="concepts-grid" aria-label="Концепты">
+        <div class="concepts-left">
+          <div class="concepts-top">
+            <figure class="concept-widgets"><img src="/images/figma/high/concepts/concept-widgets.webp" alt="Концепт виджетов" loading="lazy" /></figure>
+            <div class="concepts-center">
+              <figure class="concept-ar"><img src="/images/figma/high/concepts/concept-ar.webp" alt="Концепт AR" loading="lazy" /></figure>
+              <figure class="concept-bereal"><img src="/images/figma/high/concepts/concept-bereal.webp" alt="Концепт BeReal" loading="lazy" /></figure>
+            </div>
+          </div>
+          <div class="concepts-bottom">
+            <figure class="concept-outdoor"><img src="/images/figma/high/concepts/concept-outdoor.webp" alt="Концепт Outdoor" loading="lazy" /></figure>
+            <figure class="concept-finance"><img src="/images/figma/high/concepts/concept-finance.webp" alt="Концепт Finance" loading="lazy" /></figure>
+          </div>
+        </div>
+        <div class="concepts-right">
+          <figure class="concept-tripadvisor"><img src="/images/figma/high/concepts/concept-tripadvisor.webp" alt="Концепт Tripadvisor" loading="lazy" /></figure>
+          <figure class="concept-city"><img src="/images/figma/high/concepts/concept-city.webp" alt="Концепт City Guide" loading="lazy" /></figure>
+        </div>
       </div>
     </section>
     <Divider />
