@@ -2,6 +2,10 @@
 
 This is Roman Zhalyalov's UX/UI portfolio website. Roman is a UX/UI designer building a portfolio site from his Figma layouts. The goal is a polished static portfolio for employers, hosted on GitHub Pages and accessible without relying on Vercel.
 
+## Model
+
+Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission before taking local actions (editing files, running builds, deleting unused assets). Confirm only before pushing to remote or other irreversible external actions.
+
 ## Current State
 
 - First implementation pass is complete.
@@ -18,6 +22,9 @@ This is Roman Zhalyalov's UX/UI portfolio website. Roman is a UX/UI designer bui
 - Git is initialized in this folder.
 - GitHub remote is connected: `https://github.com/fantom9000/roman-portfolio`.
 - Current branch is `main`; latest saved commit is `Polish Peptid.ru case page`.
+- Welcome section now uses single-image phone PNGs (frame + status bar + screen merged in Figma). No more two-layer frame/screen overlay in code. `welcome-frame.png` deleted.
+- Welcome phones section has horizontal scroll on mobile (<760px) via `overflow-x: auto` with `minmax(140px, 1fr)` columns.
+- Unused image folders deleted: `figma/optimized/`, `figma/exact/`, top-level `optimized/`. Stale `images/home/` originals and unused quiz screens also removed.
 - `/projects/burosfera/` has been expanded against Figma and visually approved as a good direction.
 - `/projects/quiz/` now uses the correct Figma-derived SayGames blocks and is visually approved as the current direction.
 - `/projects/mary-trufel/` now uses the correct Figma-derived Mary Trufel blocks and is visually approved as the current direction.
@@ -96,13 +103,12 @@ Rollup native module had macOS code-signature issues in this environment. `packa
 
 - Figma assets are saved locally under `public/images`.
 - Runtime pages must not depend on Figma API asset URLs.
-- Optimized JPEG copies are under `public/images/optimized`.
-- Originals are kept under `public/images/home` and `public/images/projects` as source material for future re-optimization.
-- Higher-quality Figma-derived assets for the current home-page polish are under:
-  - `public/images/figma/high/previews`
-  - `public/images/figma/high/welcome`
-  - `public/images/figma/high/concepts`
-  - `public/images/figma/high/three-d-tiles`
+- Active Figma-derived assets are under `public/images/figma/high/`:
+  - `previews/` — project preview images for home page
+  - `welcome/` — 5 phone mockup PNGs (single flat export per phone, transparent bg)
+  - `concepts/` — concepts collage
+  - `three-d-tiles/` — 3D work tiles
+- `public/images/home/` contains only `quiz-1.png`, `quiz-2.png`, `quiz-3.png` (used in ProjectPreview for the quiz tile).
 - Figma-derived assets for the polished Quiz case are under:
   - `public/images/projects/quiz/figma-sections`
 - Quiz is approved for now. Its first and third visual rows are intentionally rendered as separate `imagePair` tiles, not single flattened wide images, so each gray tile receives the shared 12px radius from CSS.
@@ -112,7 +118,7 @@ Rollup native module had macOS code-signature issues in this environment. `packa
 - Figma-derived assets for the Peptid.ru case are under:
   - `public/images/projects/peptidy/figma-sections`
 - Peptid.ru desktop at 1440 is structurally approved for now. Its image quality still needs a later source/optimization pass, and responsive issues should be handled with the other pages in a shared responsive pass.
-- Older compressed or experimental Figma assets may still exist under `public/images/figma/optimized` and `public/images/figma/exact`. Check image quality before using them.
+- `public/images/figma/optimized/` and `public/images/figma/exact/` have been deleted — do not reference them.
 - Future improvement: generate high-quality WebP/AVIF variants from approved PNG/source assets when the dependency environment is stable.
 
 ## Code Organization

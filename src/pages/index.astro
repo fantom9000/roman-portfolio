@@ -35,8 +35,7 @@ import { projects, sideWork } from "@data/projects";
             ["welcome-5.png", "Экран профиля Welcome доставки"]
           ].map(([image, alt]) => (
             <figure class="welcome-phone">
-              <img class="welcome-phone__frame" src="/images/figma/high/welcome/welcome-frame.png" alt="" loading="lazy" />
-              <img class="welcome-phone__screen" src={`/images/figma/high/welcome/${image}`} alt={alt} loading="lazy" />
+              <img src={`/images/figma/high/welcome/${image}`} alt={alt} loading="lazy" />
             </figure>
           ))
         }
