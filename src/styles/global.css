@@ -10,7 +10,7 @@
   --gap: 20px;
   --pad: 20px;
   --text-20: 20px;
-  --text-left: clamp(15px, calc(15px + 5 * (100vw - 768px) / 672), 20px);
+  --text-left: clamp(12px, calc(5px + 1.042vw), 20px);
   --text-42: clamp(21px, calc(3.2vw - 4px), 42px);
   --text-59: clamp(31px, calc(4.22vw - 1.69px), 59px);
   --font-display: "Inter Display", Inter, Arial, sans-serif;
@@ -314,7 +314,7 @@ h3 {
 .welcome-work__text h2,
 .welcome-work__text p {
   font-family: var(--font-text);
-  font-size: var(--text-20);
+  font-size: var(--text-left);
   line-height: 1.2;
 }
 
