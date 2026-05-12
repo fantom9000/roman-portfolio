@@ -11,7 +11,7 @@
   --pad: 20px;
   --text-20: 20px;
   --text-left: clamp(15px, calc(15px + 5 * (100vw - 768px) / 672), 20px);
-  --text-42: clamp(28px, calc(28px + 14 * (100vw - 768px) / 672), 42px);
+  --text-42: clamp(21px, calc(3.2vw - 4px), 42px);
   --text-59: clamp(31px, calc(4.22vw - 1.69px), 59px);
   --font-display: "Inter Display", Inter, Arial, sans-serif;
   --font-text: "Inter Display", Inter, Arial, sans-serif;

@@ -37,6 +37,7 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
 - **Responsive pass complete** (session 2026-05-12):
   - Fluid typography: `--text-59` now viewport-proportional (`clamp(31px, 4.22vw - 1.69px, 59px)`) so the lead text holds 4 lines at all desktop widths. `--text-42` and `project-number` clamp updated to 768px base.
   - `--text-left` variable added (`clamp(15px, …, 20px)`): used for left-column body text (project titles, descriptions, side-work descriptions) to prevent overflow into right column at narrow widths.
+  - `--text-42` changed to viewport-proportional formula (`clamp(21px, 3.2vw - 4px, 42px)`), same principle as `--text-59`. Maintains constant air between left-column headings and right column at all desktop widths.
   - Header/Footer restructured: `.brand`/`.footer-name` replaced with flat `.site-name` + `.site-role` elements. `.site-header` and `.site-footer` changed to `display: grid; grid-template-columns: var(--sidebar) 1fr auto` — "Дизайнер интерфейсов" now always sits exactly on the силовая линия at all desktop widths.
   - Mobile breakpoint changed from 760px to 768px throughout.
   - `three-d-tile img`: `height: 100%` → `height: auto`.
