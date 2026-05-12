@@ -158,6 +158,21 @@ h3 {
   padding: 0 var(--pad) 40px;
 }
 
+.project-kicker {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.project-preview .project-sidebar {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.project-preview .project-visual {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+
 .project-sidebar {
   display: flex;
   padding-right: 20px;
@@ -685,10 +700,54 @@ h3 {
     padding-bottom: 72px;
   }
 
-  .project-preview,
+  .project-preview {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-kicker {
+    order: 1;
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+
+  .project-preview .project-visual {
+    order: 2;
+    grid-column: unset;
+    grid-row: unset;
+  }
+
+  .project-preview .project-sidebar {
+    order: 3;
+    grid-column: unset;
+    grid-row: unset;
+  }
+
   .side-work,
   .text-section {
     grid-template-columns: 1fr;
+  }
+
+  .side-work__text h2 {
+    font-size: 28px;
+  }
+
+  .side-work__text {
+    margin-bottom: 40px;
+    padding-right: 0;
+  }
+
+  .project-sidebar p,
+  .project-sidebar h2 {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .side-work__text p,
+  .welcome-work__text h2,
+  .welcome-work__text p {
+    font-size: var(--text-20);
+    max-width: 100%;
   }
 
   .project-sidebar {
@@ -700,8 +759,21 @@ h3 {
     min-height: auto;
   }
 
+  .project-sidebar__meta {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 16px;
+    margin-top: 16px;
+    align-items: start;
+  }
+
   .project-number {
-    margin-bottom: 18px;
+    grid-column: 1;
+    grid-row: 1 / 3;
+    margin-bottom: 0;
+    font-size: 64px;
+    line-height: 1;
+    align-self: start;
   }
 
   .project-sidebar p,
@@ -784,42 +856,4 @@ h3 {
     margin-left: 0;
   }
 
-  .three-d-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .three-d-tile--wide {
-    grid-column: auto;
-  }
-
-  .concepts-grid {
-    aspect-ratio: auto;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .concepts-left,
-  .concepts-right {
-    flex: none;
-    width: 100%;
-  }
-
-  .concepts-top {
-    aspect-ratio: 704 / 410;
-    flex-shrink: 0;
-  }
-
-  .concepts-right {
-    gap: 8px;
-  }
-
-  .concept-tripadvisor {
-    aspect-ratio: 362 / 256;
-    flex-shrink: 0;
-  }
-
-  .concept-city {
-    aspect-ratio: 362 / 256;
-  }
 }

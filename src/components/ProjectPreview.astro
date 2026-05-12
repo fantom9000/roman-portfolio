@@ -9,8 +9,8 @@ const { project } = Astro.props;
 ---
 
 <article class="project-preview" data-project={project.slug}>
+  {project.number === "01" && <span class="project-kicker">Задизайнил</span>}
   <a class="project-sidebar" href={project.href} aria-label={`Открыть проект ${project.title}`}>
-    {project.number === "01" && <span class="project-kicker">Задизайнил</span>}
     <div class="project-sidebar__meta">
       <span class="project-number">{project.number}</span>
       <h2>{project.title}</h2>

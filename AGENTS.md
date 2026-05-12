@@ -34,6 +34,17 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
 ## Remaining Work (home page)
 
 - **3D tiles:** Converted from PNG to lossless WebP via Pillow (alpha trim + lossless). PNGs still exist in `public/images/figma/high/three-d-tiles/` and can be deleted after visual approval. Index.astro updated to reference `.webp`.
+- **Mobile layout pass complete** (session 2026-05-12, continued):
+  - Project preview at ≤768px: kicker moved outside `.project-sidebar` in HTML → flex column with `order`: kicker (1) → visual (2) → sidebar/meta (3).
+  - `.project-sidebar__meta` at mobile: CSS grid `auto 1fr`, number spans both rows (`grid-row: 1/3`), `font-size: 64px; line-height: 1` (approximates height of title+description block).
+  - Project title and description at mobile: `font-size: 16px` (separate from side-work and welcome which stay at 20px).
+  - Section headings at mobile (`.side-work__text h2`): `font-size: 28px` — same as `.project-kicker`. Applied to "Законцептил", "Натридешил" etc.
+  - `.side-work__text` at mobile: `margin-bottom: 40px` (2× the ~20px gap from heading to divider above).
+  - `.project-kicker` at mobile: `font-size: 28px; margin-bottom: 40px`.
+  - Concepts bento grid and 3D grid: desktop layout preserved at mobile (full width, no column changes).
+  - `--text-59` minimum kept at `31px` (not raised — higher values caused 5-line lead on narrow desktops with text-indent).
+  - Number matching text height is approximated via fixed `font-size: 64px`. Pure CSS auto-matching is not possible without JS; SVG path for the number would enable exact matching but deferred.
+
 - **Responsive pass complete** (session 2026-05-12):
   - Fluid typography: `--text-59` now viewport-proportional (`clamp(31px, 4.22vw - 1.69px, 59px)`) so the lead text holds 4 lines at all desktop widths. `--text-42` and `project-number` clamp updated to 768px base.
   - `--text-left: clamp(12px, calc(5px + 1.042vw), 20px)`: scales left-column body text (project titles, descriptions, side-work descriptions, welcome text) from 20px at 1440px down to ~13px at 769px. Clamp minimum is 12px but effectively never reached — formula hits ~13px at 768px (mobile breakpoint). Applied to: `.project-sidebar h2`, `.project-sidebar p`, `.side-work__text p`, `.welcome-work__text h2/p`.
