@@ -597,6 +597,31 @@ h3 {
 .concept-tripadvisor { flex-shrink: 0; aspect-ratio: 362 / 256; }
 .concept-city        { flex: 1; }
 
+.concepts-mobile-row {
+  display: none;
+}
+
+.concepts-mobile-row figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.concepts-mobile-row figure:first-child {
+  aspect-ratio: 362 / 395;
+}
+
+.concepts-mobile-row figure:last-child {
+  aspect-ratio: 362 / 256;
+}
+
+.concepts-mobile-row img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
 .three-d-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -632,6 +657,14 @@ h3 {
 
   .concepts-grid figure {
     border-radius: 12px;
+  }
+
+  .concepts-mobile-row {
+    display: grid;
+    grid-column: 2;
+    grid-template-columns: 256fr 395fr;
+    gap: 1.43vw;
+    margin-top: 1.43vw;
   }
 }
 
@@ -745,6 +778,10 @@ h3 {
   .side-work,
   .text-section {
     grid-template-columns: 1fr;
+  }
+
+  .concepts-mobile-row {
+    grid-column: 1;
   }
 
   .side-work__text {
