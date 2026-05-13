@@ -621,6 +621,20 @@ h3 {
 }
 
 
+@media (max-width: 1000px) {
+  .concepts-right {
+    display: none;
+  }
+
+  .concepts-grid {
+    aspect-ratio: 708 / 666;
+  }
+
+  .concepts-grid figure {
+    border-radius: 12px;
+  }
+}
+
 @media (max-width: 1100px) {
   :root {
     --pad: 16px;
