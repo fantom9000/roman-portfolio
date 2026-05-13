@@ -58,6 +58,8 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
   - `--text-59` minimum kept at `31px` (not raised — higher values caused 5-line lead on narrow desktops with text-indent).
   - Number matching text height is approximated via fixed `font-size: 64px`. Pure CSS auto-matching is not possible without JS; SVG path for the number would enable exact matching but deferred.
 
+- **Concepts bento grid**: gaps (`1.43vw`) and border-radius (`0.83vw`) are viewport-proportional — the whole section scales as one unit. No restructuring at different widths. Any restructuring requires a Figma design from Roman first — do NOT attempt layout changes without a reference.
+
 - **Responsive pass complete** (session 2026-05-12):
   - Fluid typography: `--text-59` now viewport-proportional (`clamp(31px, 4.22vw - 1.69px, 59px)`) so the lead text holds 4 lines at all desktop widths. `--text-42` and `project-number` clamp updated to 768px base.
   - `--text-left: clamp(12px, calc(5px + 1.042vw), 20px)`: scales left-column body text (project titles, descriptions, side-work descriptions, welcome text) from 20px at 1440px down to ~13px at 769px. Clamp minimum is 12px but effectively never reached — formula hits ~13px at 768px (mobile breakpoint). Applied to: `.project-sidebar h2`, `.project-sidebar p`, `.side-work__text p`, `.welcome-work__text h2/p`.

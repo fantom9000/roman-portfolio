@@ -537,7 +537,7 @@ h3 {
 
 .concepts-grid {
   display: flex;
-  gap: 20px;
+  gap: 1.43vw;
   aspect-ratio: 1086 / 666;
 }
 
@@ -546,25 +546,25 @@ h3 {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.43vw;
 }
 
 .concepts-top {
   flex: 1;
   display: flex;
-  gap: 20px;
+  gap: 1.43vw;
 }
 
 .concepts-center {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.43vw;
 }
 
 .concepts-bottom {
   display: flex;
-  gap: 20px;
+  gap: 1.43vw;
   aspect-ratio: 704 / 256;
   flex-shrink: 0;
 }
@@ -573,13 +573,13 @@ h3 {
   flex: 0 0 33.33%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.43vw;
 }
 
 .concepts-grid figure {
   margin: 0;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 0.83vw;
 }
 
 .concepts-grid img {
@@ -619,6 +619,7 @@ h3 {
   display: block;
   max-width: none;
 }
+
 
 @media (max-width: 1100px) {
   :root {
