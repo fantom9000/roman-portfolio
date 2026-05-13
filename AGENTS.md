@@ -21,8 +21,8 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
 - Local dev server was run at `http://127.0.0.1:4321/`.
 - Git is initialized in this folder.
 - GitHub remote is connected: `https://github.com/fantom9000/roman-portfolio`.
-- Current branch is `main`; latest saved commit is `Polish Peptid.ru case page`.
-- Latest commit: `Responsive pass + 3D tiles WebP conversion`
+- Current branch is `main`; all work is merged here. **Always work from `main` — do not continue old worktree branches.**
+- Latest commit: `Proportional concepts grid + revert restructuring attempt`
 - Welcome section uses 5 single-image phone PNGs (1093×2223 after alpha trim), simple grid, gap 10px, max-width 1385px. Mobile: horizontal scroll at 760px.
 - Concepts section rebuilt as 7-tile flex bento grid matching Figma structure (see Figma node 351-26598). All tiles exported as PNG 2x by Roman, converted to lossless WebP.
 - Project preview images (burosfera, quiz, mary-trufel, peptidy) converted to lossless WebP in `public/images/figma/high/previews/`.
