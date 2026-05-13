@@ -305,8 +305,6 @@ h3 {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  max-width: 1385px;
-  margin: 0 auto;
 }
 
 .welcome-phone {
@@ -787,7 +785,6 @@ h3 {
   .peptidy-preview {
     height: auto;
     min-height: 0;
-    aspect-ratio: 1.35;
   }
 
   .project-visual {
@@ -841,11 +838,20 @@ h3 {
   }
 
   .welcome-work__phones {
-    grid-template-columns: repeat(5, 140px);
+    grid-template-columns: repeat(5, calc((100vw - 32px) / 2.5));
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
     gap: 8px;
-    padding-bottom: 8px;
+    margin-left: calc(-1 * var(--pad));
+    margin-right: calc(-1 * var(--pad));
+    padding-left: var(--pad);
+    padding-right: var(--pad);
+  }
+
+  .welcome-work__phones::-webkit-scrollbar {
+    display: none;
   }
 
   .hero-text--indent h1 {

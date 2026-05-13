@@ -42,6 +42,11 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
 ## Remaining Work (home page)
 
 - **3D tiles:** Converted from PNG to lossless WebP via Pillow (alpha trim + lossless). PNGs still exist in `public/images/figma/high/three-d-tiles/` and can be deleted after visual approval. Index.astro updated to reference `.webp`.
+- **Welcome phones carousel** (desktop + mobile):
+  - Desktop: removed `max-width: 1385px; margin: 0 auto` — phones now span full content width, edges align with all other page content.
+  - Mobile (≤768px): full horizontal scroll carousel. Phone width = `calc((100vw - 32px) / 2.5)` — always exactly 2.5 phones visible. `margin-left/right: calc(-1 * var(--pad))` for full viewport bleed. `padding-left/right: var(--pad)` so first phone aligns to left силовая линия and last phone has same right margin as all content. `overscroll-behavior-x: contain` prevents page from scrolling when swiping phones. Scrollbar hidden (`scrollbar-width: none`, `::-webkit-scrollbar { display: none }`).
+  - Project preview images: removed forced `aspect-ratio: 1.35` at mobile — images now display at their natural proportions.
+
 - **Mobile layout pass complete** (session 2026-05-12, continued):
   - Project preview at ≤768px: kicker moved outside `.project-sidebar` in HTML → flex column with `order`: kicker (1) → visual (2) → sidebar/meta (3).
   - `.project-sidebar__meta` at mobile: CSS grid `auto 1fr`, number spans both rows (`grid-row: 1/3`), `font-size: 64px; line-height: 1` (approximates height of title+description block).
