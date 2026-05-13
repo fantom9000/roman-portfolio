@@ -22,7 +22,8 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
 - Git is initialized in this folder.
 - GitHub remote is connected: `https://github.com/fantom9000/roman-portfolio`.
 - Current branch is `main`; all work is merged here. **Always work from `main` — do not continue old worktree branches.**
-- Latest commit: `Proportional concepts grid + revert restructuring attempt`
+- Latest commit: `Concepts: add mobile bottom row with proportional city + tripadvisor tiles at <=1000px`
+- **Concepts section ≤1000px:** right column (tripadvisor + city) hidden, a separate `.concepts-mobile-row` appears under the bento. Uses CSS Grid `grid-template-columns: 256fr 395fr` so both tiles have matching height with their natural aspect ratios preserved (city `362/395` portrait, tripadvisor `362/256` landscape). At ≤768px, `grid-column` is reset to `1` to match `.side-work`'s single-column layout. HTML duplicates the two tiles (one set in `.concepts-right` for desktop, one in `.concepts-mobile-row` for mobile) — CSS toggles visibility.
 - Welcome section uses 5 single-image phone PNGs (1093×2223 after alpha trim), simple grid, gap 10px, max-width 1385px. Mobile: horizontal scroll at 760px.
 - Concepts section rebuilt as 7-tile flex bento grid matching Figma structure (see Figma node 351-26598). All tiles exported as PNG 2x by Roman, converted to lossless WebP.
 - Project preview images (burosfera, quiz, mary-trufel, peptidy) converted to lossless WebP in `public/images/figma/high/previews/`.
@@ -222,6 +223,19 @@ The layout is built on two vertical power lines (силовые линии):
 When Roman brings tasks at the start of a session, **ask which task to start with** before doing anything. Do not auto-execute all tasks in sequence. Some tasks (like image replacement) have a prerequisite step on Roman's side (exporting from Figma, dropping files). Starting without confirmation means processing the wrong assets or making changes without a visual basis.
 
 Specific mistake to never repeat: Roman described a workflow "Roman exports PNG → drops files → agent processes". There were already old PNG files in the target folder from a previous session. Instead of waiting for confirmation that fresh files had been dropped, the agent silently processed the old files. Always ask "have you dropped the new files?" before processing assets.
+
+## Working Rules (established 2026-05-14)
+
+Roman is a designer learning the tooling. He cannot easily read code or recover from broken state. Follow these rules strictly:
+
+1. **One change at a time.** Don't batch multiple unrelated changes. Wait for visual approval before the next step.
+2. **Explain the plan in plain language before touching code.** Say what files you'll change and what the result will look like. Wait for "ok" / "делай" before editing.
+3. **Commit immediately after each approved change.** Roman judging "good" = `git add && git commit` right away. This keeps the rollback point exactly one step back.
+4. **When reverting, revert ALL related files together.** Reverting only CSS while HTML still references new classes leaves broken intermediate state.
+5. **Worktrees:** check `git worktree list` at session start. If there are old branches with commits not in main, surface this to Roman before working. Never assume the current worktree has the latest work.
+6. **Server check:** if Roman says "nothing changed", verify which port/directory the running dev server points to (`lsof -p <pid> | grep cwd`) before assuming the change is broken. A stale server from another worktree shows stale code.
+7. **Aspect ratios:** when placing tiles side by side that must align in height but preserve natural proportions, use CSS Grid with `grid-template-columns: <a>fr <b>fr` where the fr ratio matches the inverse height ratio. Don't use `flex: 1` with different `aspect-ratio` — heights will differ.
+8. **Model:** sonnet-4-6 is the default. If a stubborn CSS proportions / layout problem doesn't resolve in 2-3 tries, suggest Roman switch to opus-4-7 for that task — it handles spatial/math layout reasoning better.
 
 ## Editing Guidance
 
