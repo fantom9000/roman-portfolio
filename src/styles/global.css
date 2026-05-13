@@ -348,7 +348,7 @@ h3 {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  grid-template-columns: 294px minmax(0, 874px);
+  grid-template-columns: calc(var(--sidebar) - 20px) 62.43%;
   gap: 20px;
   padding: 0 var(--pad) 30px;
 }
@@ -418,8 +418,8 @@ h3 {
 
 .mobile-screen {
   display: grid;
-  width: 533px;
-  height: 714px;
+  flex: 0 0 calc((100% - var(--sidebar) - 20px) / 2);
+  aspect-ratio: 533 / 714;
   margin: 0;
   place-items: center;
   overflow: hidden;
@@ -454,7 +454,7 @@ h3 {
 }
 
 .case-image-tile {
-  width: 533px;
+  flex: 0 0 calc((100% - var(--sidebar) - 20px) / 2);
   overflow: hidden;
   border-radius: var(--case-radius);
   background: var(--color-surface);
@@ -478,7 +478,7 @@ h3 {
 
 .desktop-mobile-screens {
   display: grid;
-  grid-template-columns: minmax(0, 844px) 222px;
+  grid-template-columns: calc(100% - var(--sidebar) - 242px) 222px;
   align-items: start;
 }
 

@@ -63,6 +63,21 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
   - At ≤768px: `three-d-grid` → single column; `concepts-grid` → flex column with per-section `aspect-ratio`.
 - **PNG source files** for concept tiles still exist alongside WebP — can be deleted once Roman approves quality.
 
+## Case Pages — Layout System
+
+All case pages use a shared component architecture:
+- Each page = `<CasePage project={project} />` (one line)
+- `CasePage.astro` iterates `project.sections` and renders typed components: `TextSection`, `BrowserFrame`, `ImagePair`, `MobileScreens`, `DesktopMobileScreens`, `wideImage`
+- All content (text, images, section types) lives in `src/data/projects.ts`
+
+**Силовые линии on case pages** — all visual elements align to `var(--sidebar)`:
+- `TextSection`: `grid-template-columns: calc(var(--sidebar) - 20px) 62.43%` — left col scales with sidebar, right col = 62.43% for consistent right air
+- `BrowserFrame` / `wideImage`: `width: min(1086px, calc(100% - var(--sidebar)))` — fills right column exactly
+- `ImagePair` / `MobileScreens`: `flex: 0 0 calc((100% - var(--sidebar) - 20px) / 2)` — each tile = half of right column, proportional at all widths
+- `DesktopMobileScreens`: `grid-template-columns: calc(100% - var(--sidebar) - 242px) 222px` — desktop fills right column minus phone (222px) and gap (20px)
+
+Previously: `case-image-tile`, `mobile-screen`, and `desktop-mobile-screens` used fixed pixel widths (533px, 844px) — at viewports narrower than 1440px they drifted left past the силовая линия.
+
 - `/projects/burosfera/` has been expanded against Figma and visually approved.
 - `/projects/quiz/` uses correct Figma-derived SayGames blocks, visually approved.
 - `/projects/mary-trufel/` uses correct Figma-derived blocks, visually approved.
