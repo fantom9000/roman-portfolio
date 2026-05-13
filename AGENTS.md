@@ -26,7 +26,15 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
 - Welcome section uses 5 single-image phone PNGs (1093×2223 after alpha trim), simple grid, gap 10px, max-width 1385px. Mobile: horizontal scroll at 760px.
 - Concepts section rebuilt as 7-tile flex bento grid matching Figma structure (see Figma node 351-26598). All tiles exported as PNG 2x by Roman, converted to lossless WebP.
 - Project preview images (burosfera, quiz, mary-trufel, peptidy) converted to lossless WebP in `public/images/figma/high/previews/`.
-- **Fluid typography** implemented via `clamp()`: `--text-42`, `--text-59`, and `.project-number` all scale continuously between 760px and 1440px. No fixed breakpoint jumps for font sizes.
+- **Typography system** — all font sizes live in 5 semantic CSS variables in `:root`:
+  - `--type-lead`    → hero/lead text (59px at 1440px, scales to 31px)
+  - `--type-section` → section headings "Задизайнил", "Законцептил" etc (42px → 21px)
+  - `--type-number`  → project numbers 01–04 (80px → 48px)
+  - `--type-body`    → all descriptions, welcome, side-work text (20px → 12px)
+  - `--type-ui`      → nav, header, footer (fixed 20px)
+  - At ≤768px, `:root` overrides: `--type-body: 20px`, `--type-section: 28px`, `--type-number: 64px`
+  - Exception: `.project-sidebar h2/p` at mobile = 16px (intentional — compact layout with large number)
+  - To change any role globally: edit its variable. It updates everywhere across all pages and breakpoints.
 - `text-indent` on hero text fixed: uses `var(--sidebar)` percentage (was hardcoded 310px). Resets to 0 only at 760px, not at 1100px.
 - Unused image folders deleted: `figma/optimized/`, `figma/exact/`, top-level `optimized/`, stale home/ originals.
 - `.claude/` and `CLAUDE.md` added to `.gitignore` to prevent Claude internal files from polluting git.
