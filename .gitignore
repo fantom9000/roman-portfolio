@@ -7,6 +7,7 @@ dist/
 npm-debug.log*
 pnpm-debug.log*
 node_modules
-.claude/
+.claude/*
+!.claude/skills/
 CLAUDE.md
 docs/
