@@ -10,10 +10,14 @@
   --gap: 20px;
   --pad: 20px;
   --type-ui:      20px;
-  --type-body:    clamp(12px, calc(5px + 1.042vw), 20px);
-  --type-section: clamp(21px, calc(3.2vw - 4px), 42px);
-  --type-number:  clamp(48px, calc(48px + 32 * (100vw - 768px) / 672), 80px);
-  --type-lead:    clamp(31px, calc(4.22vw - 1.69px), 59px);
+  --type-body:    clamp(16px, calc(0.833vw + 8px), 20px);
+  --type-section: clamp(28px, 2.917vw, 42px);
+  --type-number:  clamp(64px, calc(3.333vw + 32px), 80px);
+  --type-lead:    clamp(32px, calc(5.625vw - 22px), 59px);
+  --space-grid:          clamp(8px, calc(2.5vw - 16px), 20px);
+  --space-block:         clamp(30px, calc(2.083vw + 10px), 40px);
+  --space-section:       clamp(58px, calc(3.542vw + 24px), 75px);
+  --space-section-large: clamp(85px, calc(6.25vw + 25px), 115px);
   --font-display: "Inter Display", Inter, Arial, sans-serif;
   --font-text: "Inter Display", Inter, Arial, sans-serif;
   --case-radius: 12px;
@@ -92,8 +96,8 @@ h3 {
 }
 
 .site-footer {
-  padding-top: 75px;
-  padding-bottom: 40px;
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-block);
 }
 
 .site-name,
@@ -120,7 +124,7 @@ h3 {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 70px var(--pad) 115px;
+  padding: var(--space-section) var(--pad) var(--space-section-large);
 }
 
 .hero-text h1 {
@@ -156,7 +160,7 @@ h3 {
   display: grid;
   grid-template-columns: var(--sidebar) minmax(0, 1fr);
   gap: 0;
-  padding: 0 var(--pad) 40px;
+  padding: 0 var(--pad) var(--space-block);
 }
 
 .project-kicker {
@@ -206,7 +210,6 @@ h3 {
 
 .project-sidebar h2 {
   max-width: 294px;
-  margin-bottom: 4px;
   font-family: var(--font-text);
   font-size: var(--type-body);
   font-weight: 700;
@@ -298,7 +301,7 @@ h3 {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 75px var(--pad) 115px;
+  padding: var(--space-section) var(--pad) var(--space-section-large);
 }
 
 .welcome-work__phones {
@@ -333,7 +336,6 @@ h3 {
 }
 
 .welcome-work__text h2 {
-  margin-bottom: 5px;
   font-weight: 700;
 }
 
@@ -348,7 +350,7 @@ h3 {
   margin: 0 auto;
   grid-template-columns: calc(var(--sidebar) - 20px) 62.43%;
   gap: 20px;
-  padding: 0 var(--pad) 30px;
+  padding: 0 var(--pad) var(--space-block);
 }
 
 .text-section h2 {
@@ -515,7 +517,7 @@ h3 {
   max-width: 1440px;
   margin: 0 auto;
   grid-template-columns: var(--sidebar) minmax(0, 1fr);
-  padding: 0 var(--pad) 40px;
+  padding: 0 var(--pad) var(--space-block);
 }
 
 .side-work__text {
@@ -625,7 +627,7 @@ h3 {
 .three-d-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  gap: var(--space-grid);
 }
 
 .three-d-tile {
@@ -715,18 +717,9 @@ h3 {
     gap: 8px;
   }
 
-  .three-d-grid {
-    gap: 16px;
-  }
 }
 
-@media (max-width: 768px) {
-  :root {
-    --type-body:    20px;
-    --type-section: 28px;
-    --type-number:  64px;
-  }
-
+@media (max-width: 960px) {
   .site-header,
   .site-footer {
     grid-template-columns: 1fr auto;
@@ -746,11 +739,6 @@ h3 {
     align-items: flex-end;
     gap: 8px;
     align-self: start;
-  }
-
-  .hero-text {
-    padding-top: 54px;
-    padding-bottom: 72px;
   }
 
   .project-preview {
@@ -791,14 +779,26 @@ h3 {
 
   .project-sidebar p,
   .project-sidebar h2 {
-    font-size: 16px;
-    max-width: 100%;
+    max-width: 70%;
   }
 
-  .side-work__text p,
-  .welcome-work__text h2,
-  .welcome-work__text p {
-    max-width: 100%;
+  .side-work__text p {
+    max-width: 70%;
+  }
+
+  .welcome-work__text {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-block);
+    max-width: 95%;
+  }
+
+  .welcome-work__text h2 {
+    grid-column: 1 / -1;
+  }
+
+  .welcome-work__text p + p {
+    margin-top: 0;
   }
 
   .project-sidebar {
@@ -811,24 +811,17 @@ h3 {
   }
 
   .project-sidebar__meta {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     column-gap: 16px;
     margin-top: 16px;
-    align-items: start;
   }
 
   .project-number {
-    grid-column: 1;
-    grid-row: 1 / 3;
     margin-bottom: 0;
     line-height: 1;
-    align-self: start;
-  }
-
-  .project-sidebar p,
-  .side-work__text p {
-    max-width: 100%;
+    margin-top: -0.08em;
   }
 
   .project-visual > img,
@@ -914,4 +907,15 @@ h3 {
     margin-left: 0;
   }
 
+}
+
+@media (max-width: 585px) {
+  .welcome-work__text {
+    grid-template-columns: 1fr;
+    max-width: 85%;
+  }
+
+  .welcome-work__text p + p {
+    margin-top: 20px;
+  }
 }

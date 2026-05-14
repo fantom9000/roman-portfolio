@@ -13,8 +13,10 @@ const { project } = Astro.props;
   <a class="project-sidebar" href={project.href} aria-label={`Открыть проект ${project.title}`}>
     <div class="project-sidebar__meta">
       <span class="project-number">{project.number}</span>
-      <h2>{project.title}</h2>
-      <p>{project.description}</p>
+      <div class="project-sidebar__text">
+        <h2>{project.title}</h2>
+        <p>{project.description}</p>
+      </div>
     </div>
   </a>
   <a class="project-visual" href={project.href} aria-label={`Открыть проект ${project.title}`}>
