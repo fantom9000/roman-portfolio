@@ -24,6 +24,9 @@ importers:
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
+      typograf:
+        specifier: ^7.7.0
+        version: 7.7.0
 
 packages:
 
@@ -1652,6 +1655,10 @@ packages:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  typograf@7.7.0:
+    resolution: {integrity: sha512-VaUj5T5KjAeXVsGdSJsaKaxiPq/dC1WB+xo+Y0aclUQ+omBQvCejqCk3t5QEY8n0OnTRYvUiPd2/rod1KAQzxA==}
+    engines: {node: '>= 4'}
 
   unified@11.0.5:
     resolution: {integrity: sha512-xKvGhPWw3k84Qjh8bI3ZeJjqnyadK+GEFtazSfZv/rKeTkTjOJho6mFqh2SM96iIcZokxiOpg78GazTSg8+KHA==}
@@ -3799,6 +3806,8 @@ snapshots:
       semver: 7.7.4
 
   typescript@5.9.3: {}
+
+  typograf@7.7.0: {}
 
   unified@11.0.5:
     dependencies:
