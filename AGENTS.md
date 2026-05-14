@@ -22,7 +22,8 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
 - Git is initialized in this folder.
 - GitHub remote is connected: `https://github.com/fantom9000/roman-portfolio`.
 - Current branch is `main`; all work is merged here. **Always work from `main` — do not continue old worktree branches.**
-- Latest commit: `Spacing & typography tokens + 960 breakpoint, welcome 2-col, project number alignment`
+- Latest commit: `Add typograf script and apply Russian typography rules to source text`
+- **Russian typography**: `scripts/typograf.mjs` обрабатывает все `.ts` и `.astro` файлы в `src/` через npm-пакет `typograf`. Вставляет настоящие Unicode-неразрывные пробелы (U+00A0), длинные тире, кавычки-ёлочки и т.д. — **не HTML-сущности** (никаких `&nbsp;` в исходниках). Обрабатывает: строки в кавычках (атрибуты, data поля) + текст между тегами `<p>`, `<h1>-<h6>`, `<li>`. Запускать вручную через `node scripts/typograf.mjs`. DevTools Chrome визуально показывает невидимые U+00A0 как `&nbsp;` — это features DevTools, не реальный контент HTML.
 - **Concepts section ≤1000px:** right column (tripadvisor + city) hidden, a separate `.concepts-mobile-row` appears under the bento. Uses CSS Grid `grid-template-columns: 256fr 395fr` so both tiles have matching height with their natural aspect ratios preserved (city `362/395` portrait, tripadvisor `362/256` landscape). At ≤768px, `grid-column` is reset to `1` to match `.side-work`'s single-column layout. HTML duplicates the two tiles (one set in `.concepts-right` for desktop, one in `.concepts-mobile-row` for mobile) — CSS toggles visibility.
 - Welcome section uses 5 single-image phone PNGs (1093×2223 after alpha trim), simple grid, gap 10px, max-width 1385px. Mobile: horizontal scroll at 760px.
 - Concepts section rebuilt as 7-tile flex bento grid matching Figma structure (see Figma node 351-26598). All tiles exported as PNG 2x by Roman, converted to lossless WebP.
@@ -271,6 +272,121 @@ Roman is a designer learning the tooling. He cannot easily read code or recover 
 env ASTRO_TELEMETRY_DISABLED=1 /Users/Roman/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node .tools/pnpm/bin/pnpm.cjs run build
 env ASTRO_TELEMETRY_DISABLED=1 /Users/Roman/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node .tools/pnpm/bin/pnpm.cjs exec astro check
 ```
+
+## Next Session Plan (составлен 2026-05-14, Opus 4.7 high)
+
+Roman сформулировал 8 задач. План для следующего сеанса (предполагается Sonnet). **Выполнять строго по одному пункту: план шага → подтверждение визуально → коммит → следующий пункт.** Не объединять пункты в один коммит. При сомнениях спрашивать Романа.
+
+### 1. Замена картинок концептов и 3D-тайлов
+- Roman пере-экспортирует 14 PNG 2x в существующие папки: `public/images/figma/high/concepts/` (7 файлов) и `public/images/figma/high/three-d-tiles/` (7 файлов).
+- Имена файлов в `src/pages/index.astro`: concept-widgets, concept-ar, concept-bereal, concept-outdoor, concept-finance, concept-tripadvisor, concept-city; santa, heart, paper, bereal, f1-car, sber, icecream.
+- **ВАЖНО:** спросить Романа «все 14 PNG выгружены?» перед обработкой — нельзя обрабатывать старые файлы.
+- Pillow: alpha-trim + lossless WebP конверсия. Заменить старые .webp. Удалить PNG только после approval.
+
+### 2. Серые плашки в 3D вынести из картинок в HTML
+- `santa.webp` и `bereal.webp` сейчас имеют запечённые серые плашки с текстом. Это неправильно — текст должен быть в HTML.
+- Спросить Романа точные тексты на плашках + попросить экспортировать эти PNG **без плашек**.
+- Изменить структуру в `src/pages/index.astro`:
+  ```astro
+  <figure class="three-d-tile three-d-tile--with-caption">
+    <img src="..." alt="..." loading="lazy" />
+    <figcaption>{текст плашки}</figcaption>
+  </figure>
+  ```
+- CSS:
+  ```css
+  .three-d-tile--with-caption {
+    display: flex;
+    flex-direction: column;
+  }
+  .three-d-tile--with-caption img {
+    border-radius: 12px 12px 0 0;
+  }
+  .three-d-tile figcaption {
+    background: var(--color-surface);
+    padding: var(--space-grid) var(--space-block);
+    font-size: var(--type-body);
+    line-height: 1.2;
+    font-family: var(--font-text);
+    border-radius: 0 0 12px 12px;
+  }
+  ```
+
+### 3. Тексты описания в кейсах: 70% ширины + отступ заголовок-текст
+- `.text-section p` на мобильном занимает 100% — добавить `max-width: 70%` в `@media (max-width: 960px)`.
+- Отступ heading → body на мобильном выглядит больше чем в project-sidebar. Унифицировать:
+  ```css
+  @media (max-width: 960px) {
+    .text-section { row-gap: 0; }
+    .text-section h2 { margin-bottom: 0; }
+  }
+  ```
+- Проверка: `/projects/burosfera/` на 800-900px, блок «Контекст». Должно совпадать с главной.
+
+### 4. Замена картинок в кейсах + починить обрезку
+- Roman экспортирует все картинки кейсов в `public/images/projects/<slug>/figma-sections/` (4 папки).
+- Список картинок в `src/data/projects.ts`.
+- Спросить «выгружены?», затем PNG → lossless WebP. Обновить пути в projects.ts.
+- **Параллельно:** найти и убрать обрезку. В global.css в классах `.mobile-screens img`, `.case-image-pair img`, `.desktop-mobile-image`, `.browser-image`, `.case-wide-image` — заменить `object-fit: cover` на `object-fit: contain` (или убрать). Убрать жёсткие `aspect-ratio` если они не совпадают с натуральными пропорциями картинок. Правило: **картинки скейлятся, не обрезаются**.
+
+### 5. Хедер и футер на мобильном (требует обсуждения с Романом)
+- Сейчас на ≤960: 1fr auto grid, контакты в столбик справа. Выглядит слабо.
+- **Опус рекомендует вариант A (Editorial):** имя сверху на всю ширину, роль ниже, контакты горизонтально в одну строку с разделителями.
+  ```css
+  @media (max-width: 960px) {
+    .site-header,
+    .site-footer {
+      grid-template-columns: 1fr;
+      row-gap: 8px;
+    }
+    .contact-links {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+  }
+  ```
+- Альтернативы: B (всё в столбик по правому краю), C (бургер-меню — требует JS, не рекомендую для editorial).
+- Показать Роману вариант A в браузере. Не нравится — спросить какой делать.
+
+### 6. Лиды на узких ширинах
+- На узких 32px минимум — слишком много строк.
+- Опустить `--type-lead` минимум до 24px:
+  ```css
+  --type-lead: clamp(24px, calc(5.625vw - 22px), 59px);
+  ```
+- На ≤500px дать просторнее line-height:
+  ```css
+  @media (max-width: 500px) {
+    .hero-text h1 { line-height: 1.1; }
+  }
+  ```
+- Проверить на 1440, 800, 500, 400. Не нравится — откатить только этот шаг.
+
+### 7. Тексты в кейсах далеко от своих картинок
+- `.text-section` имеет padding-bottom `var(--space-block)` (30-40), а `.browser-frame` и др. — хардкод 80px. Неравномерно.
+- Ввести новый токен:
+  ```css
+  --space-case-block: clamp(40px, calc(2.78vw + 20px), 80px);
+  ```
+- Заменить `80px` на `var(--space-case-block)` в: `.browser-frame`, `.mobile-screens`, `.case-image-pair`, `.desktop-mobile-screens`, `.case-wide-image`.
+- Если визуальная связь всё ещё слабая — можно `.text-section { padding-bottom: 0 }` чтобы текст «прилип» к своей картинке.
+
+### 8. Skill для типографа
+- Добавить в `package.json` scripts:
+  ```json
+  "typograf": "node scripts/typograf.mjs",
+  "prebuild": "node scripts/typograf.mjs"
+  ```
+- На dev НЕ автозапускать. Только перед билдом.
+- Опционально: создать `.claude/skills/typograf/SKILL.md` с описанием — чтобы вызывать через `/typograf` или просьбу «прогнать типограф».
+
+### После всех пунктов
+1. `pnpm build` и `pnpm exec astro check` — 0 ошибок
+2. Approval Романа
+3. `git push origin main`
+4. Обновить AGENTS.md: новые токены, паттерны, правила
 
 ## Known Follow-Ups
 
