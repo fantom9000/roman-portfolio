@@ -22,21 +22,29 @@ Use **claude-sonnet-4-6** for this project. Do not ask Roman for permission befo
 - Git is initialized in this folder.
 - GitHub remote is connected: `https://github.com/fantom9000/roman-portfolio`.
 - Current branch is `main`; all work is merged here. **Always work from `main` — do not continue old worktree branches.**
-- Latest commit: `Concepts: add mobile bottom row with proportional city + tripadvisor tiles at <=1000px`
+- Latest commit: `Spacing & typography tokens + 960 breakpoint, welcome 2-col, project number alignment`
 - **Concepts section ≤1000px:** right column (tripadvisor + city) hidden, a separate `.concepts-mobile-row` appears under the bento. Uses CSS Grid `grid-template-columns: 256fr 395fr` so both tiles have matching height with their natural aspect ratios preserved (city `362/395` portrait, tripadvisor `362/256` landscape). At ≤768px, `grid-column` is reset to `1` to match `.side-work`'s single-column layout. HTML duplicates the two tiles (one set in `.concepts-right` for desktop, one in `.concepts-mobile-row` for mobile) — CSS toggles visibility.
 - Welcome section uses 5 single-image phone PNGs (1093×2223 after alpha trim), simple grid, gap 10px, max-width 1385px. Mobile: horizontal scroll at 760px.
 - Concepts section rebuilt as 7-tile flex bento grid matching Figma structure (see Figma node 351-26598). All tiles exported as PNG 2x by Roman, converted to lossless WebP.
 - Project preview images (burosfera, quiz, mary-trufel, peptidy) converted to lossless WebP in `public/images/figma/high/previews/`.
-- **Typography system** — all font sizes live in 5 semantic CSS variables in `:root`:
-  - `--type-lead`    → hero/lead text (59px at 1440px, scales to 31px)
-  - `--type-section` → section headings "Задизайнил", "Законцептил" etc (42px → 21px)
-  - `--type-number`  → project numbers 01–04 (80px → 48px)
-  - `--type-body`    → all descriptions, welcome, side-work text (20px → 12px)
+- **Typography system** — all font sizes live in 5 semantic CSS variables in `:root`, fully fluid via `clamp()`:
+  - `--type-lead`    → hero/lead text (59px at 1440px → 32px at ≤960px)
+  - `--type-section` → section headings "Задизайнил", "Законцептил" etc (42px → 28px at ≤960px)
+  - `--type-number`  → project numbers 01–04 (80px → 64px at ≤960px)
+  - `--type-body`    → all descriptions, welcome, side-work text (20px → 16px at ≤960px)
   - `--type-ui`      → nav, header, footer (fixed 20px)
-  - At ≤768px, `:root` overrides: `--type-body: 20px`, `--type-section: 28px`, `--type-number: 64px`
-  - Exception: `.project-sidebar h2/p` at mobile = 16px (intentional — compact layout with large number)
+  - **No `:root` overrides at any breakpoint** — sizes are continuous between 1440 and 960, then frozen at mobile minimums below 960. The 768 jump was eliminated 2026-05-14 because it produced a non-systematic feel.
+  - Mobile minimums chosen to match industry standards (iOS HIG, Material): 16px body is the readability floor.
   - To change any role globally: edit its variable. It updates everywhere across all pages and breakpoints.
+- **Spacing system** — all major paddings/gaps live in 4 CSS variables in `:root`, fluid via `clamp()`:
+  - `--space-grid`           → grid gaps (20px at 1440 → 8px at ≤960). Used on `.three-d-grid`, `.concepts-mobile-row`, `.welcome-work__text` mobile gap.
+  - `--space-block`          → small section paddings (40px → 30px). Used on `.project-preview`, `.side-work`, `.text-section`, footer-bottom.
+  - `--space-section`        → section tops (75px → 58px). Used on `.hero-text` top, `.welcome-work` top, footer-top.
+  - `--space-section-large`  → large section bottoms (115px → 85px). Used on `.hero-text` bottom, `.welcome-work` bottom.
+  - All scale linearly between 1440 and 960, freeze at minimums below 960. **Always prefer these tokens over hardcoded px** for any vertical rhythm changes.
 - `text-indent` on hero text fixed: uses `var(--sidebar)` percentage (was hardcoded 310px). Resets to 0 only at 760px, not at 1100px.
+- **Project preview at ≤960px**: `.project-sidebar__meta` uses flex row layout. HTML has a `.project-sidebar__text` wrapper around `h2` + `p` so title and description stack tightly inside their own column, with the number as a flex sibling on the left. The number has `margin-top: -0.08em` to compensate for the natural cap-top offset, so the digit's cap-height visually aligns with the title's cap-height.
+- **Welcome text at ≤960px**: `.welcome-work__text` is a 2-column grid. The `h2` spans both columns at top, paragraphs sit side by side below. Gap = `--space-block`. `max-width: 95%` leaves a small right air. At ≤585px, collapses back to 1 column with the original `margin-top: 20px` between paragraphs.
 - Unused image folders deleted: `figma/optimized/`, `figma/exact/`, top-level `optimized/`, stale home/ originals.
 - `.claude/` and `CLAUDE.md` added to `.gitignore` to prevent Claude internal files from polluting git.
 
@@ -150,9 +158,12 @@ The layout is built on two vertical power lines (силовые линии):
 - There must always be visual air between left column text and the right column. `padding-right: 20px` on `.project-sidebar` and `.side-work__text` is the minimum gap.
 
 **Breakpoints:**
-- ≤768px → single-column mobile layout (the only mobile breakpoint).
-- >768px → two-column desktop layout with proportional scaling.
-- No breakpoints between 768px and 1440px. Everything scales fluidly via `clamp()` and percentages.
+- ≤960px → single-column mobile layout (the main breakpoint, moved from 768 to 960 on 2026-05-14 because the 2-column sidebar layout doesn't work below ~960 — sidebar gets too narrow for readable text).
+- ≤1000px → concepts grid: right column hidden, replaced by `.concepts-mobile-row` (independent of main breakpoint, related to bento composition).
+- ≤1100px → `--pad` and `--gap` shrink to 16px (horizontal breathing).
+- ≤585px → `.welcome-work__text` collapses from 2-column to 1-column with restored `margin-top: 20px` between paragraphs.
+- >960px → two-column desktop layout with proportional scaling.
+- All typography and spacing tokens scale fluidly between 960 and 1440, freeze at mobile minimums below 960. No jumps at any breakpoint.
 
 **Reference site**: https://www.erno.works/ — same editorial grid logic. Font sizes and layout scale proportionally as viewport narrows. No abrupt jumps.
 
@@ -235,7 +246,9 @@ Roman is a designer learning the tooling. He cannot easily read code or recover 
 5. **Worktrees:** check `git worktree list` at session start. If there are old branches with commits not in main, surface this to Roman before working. Never assume the current worktree has the latest work.
 6. **Server check:** if Roman says "nothing changed", verify which port/directory the running dev server points to (`lsof -p <pid> | grep cwd`) before assuming the change is broken. A stale server from another worktree shows stale code.
 7. **Aspect ratios:** when placing tiles side by side that must align in height but preserve natural proportions, use CSS Grid with `grid-template-columns: <a>fr <b>fr` where the fr ratio matches the inverse height ratio. Don't use `flex: 1` with different `aspect-ratio` — heights will differ.
-8. **Model:** sonnet-4-6 is the default. If a stubborn CSS proportions / layout problem doesn't resolve in 2-3 tries, suggest Roman switch to opus-4-7 for that task — it handles spatial/math layout reasoning better.
+8. **Model:** for this project Roman uses **opus-4-7 high** by default — design work involves many spatial/proportional calculations where opus is noticeably more reliable. Sonnet may be appropriate for plain text edits or asset shuffles but should not be the default for layout work.
+9. **Cap-height alignment:** to align a large number's caps with a smaller heading's caps in a flex row, use `align-items: flex-start` on the flex container and `margin-top: -0.08em` (approximately) on the number with `line-height: 1`. The negative margin compensates for the natural ascender-to-cap-top offset of Inter Display at the larger size. Value can be fine-tuned ±0.02em visually.
+10. **Duplicate media-query rules:** when working inside a long media-query block, grep for the property/selector you're adding before adding it — there may already be a rule lower in the block overriding yours. This caused at least two visible bugs in one session.
 
 ## Editing Guidance
 
